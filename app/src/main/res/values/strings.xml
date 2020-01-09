@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Stitcha</string>
+    <string name="password">password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="api_key">AIzaSyAy1LotddSae4-CgzyAx3uqe4PBlPXtzXE</string>
+    <string name="geofence_transition_invalid_type">
+        Geofence transition error: invalid transition type %1$d
+    </string>
+    <string name="geofence_transition_notification_text">geofence_transitoin_ntofication_text</string>
+    <string name="geofence_transition_entered">entered</string>
+    <string name="geofence_transition_exited">exited</string>
+    <string name="unknown_geofence_transition">unknown geofence transition</string>
+    <string name="unknown_geofence_error">unknown geofence error</string>
+    <string name="geofence_not_available">geofence not available</string>
+    <string name="geofence_too_many_geofences">too many geofences</string>
+    <string name="geofence_too_many_pending_intents">too many pending intents</string>
+    <string name="insufficient_permissions">insufficient permissions</string>
+
+
+    <!-- Buttons strings -->
+    <string name="add_geofences">Add geofences</string>
+    <string name="remove_geofences">Remove geofences</string>
+
+    <string name="geofences_added">Geofences added</string>
+    <string name="geofences_removed">Geofences removed</string>
+
+    <!-- Error strings -->
+
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+    <string name="permission_denied_explanation">Permission was denied, but is needed for core
+        functionality.</string>
+    <string name="settings">Settings</string>
+    <string name="safe_btn_txt">fonctionne</string>
+    <string name="unsafe_btn_txt">ne fonctionne pas</string>
+    <string name="account_settings">Mon Profile</string>
+    <string name="safe">Fonctionne:</string>
+    <string name="unsafe">%s%d Ne fonctionne pas:\t%d</string>
+
+    <string name="facebook_app_id">608255636381899</string>
+    <string name="fb_login_protocol_scheme">fb608255636381899</string>
+    <string name="admob_banner_ad">ca-app-pub-8514985141707501/9176374996</string>
+    <string name="admob_interstitial_ad">ca-app-pub-8514985141707501/9609326125</string>
+    <string name="privay_policy_text">TextView</string>
+    <string name="rewarded_ad_id">ca-app-pub-8514985141707501/5720752231</string>
+</resources>

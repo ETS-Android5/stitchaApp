@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--    <item-->
+    <!--        android:id="@+id/main_account_settings_btn"-->
+    <!--        android:title="@string/account_settings" />-->
+    <!--    <item-->
+    <!--        android:id="@+id/main_users_btn"-->
+    <!--        android:title="Users" />-->
+    <item
+        android:id="@+id/main_logout_btn"
+        android:title="Se deconnecter" />
+
+    <item
+        android:id="@+id/main_choose_transport_type_btn"
+        android:title="choisir le type de transport" />
+
+    <item
+        android:id="@+id/main_privacy_policy_btn"
+        android:title="privacy policy" />
+</menu>

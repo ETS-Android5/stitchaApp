@@ -1,0 +1,1307 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0628135342366,
+          50.635366114256
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "7",
+        "line": "1",
+        "geo_point_2d": [
+          50.635366114256,
+          3.0628135342366
+        ],
+        "name": "RIHOUR"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1100361354255,
+          50.642321750302
+        ]
+      },
+      "properties": {
+        "commune": "MONS EN BAROEUL",
+        "insee": "410",
+        "objectid": "1020",
+        "line": "2",
+        "geo_point_2d": [
+          50.642321750302,
+          3.1100361354255
+        ],
+        "name": "MAIRIE DE MONS"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1633450006908,
+          50.684138251725
+        ]
+      },
+      "properties": {
+        "commune": "ROUBAIX",
+        "insee": "512",
+        "objectid": "1028",
+        "line": "2",
+        "geo_point_2d": [
+          50.684138251725,
+          3.1633450006908
+        ],
+        "name": "EPEULE MONTESQUIEU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0502351989216,
+          50.618407401948
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1043",
+        "line": "2",
+        "geo_point_2d": [
+          50.618407401948,
+          3.0502351989216
+        ],
+        "name": "PORTE DES POSTES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0607927879332,
+          50.631629573105
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "6",
+        "line": "1",
+        "geo_point_2d": [
+          50.631629573105,
+          3.0607927879332
+        ],
+        "name": "REPUBLIQUE BEAUX ARTS"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0622480559372,
+          50.617588052888
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1005",
+        "line": "2",
+        "geo_point_2d": [
+          50.617588052888,
+          3.0622480559372
+        ],
+        "name": "PORTE D'ARRAS"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.076314118337,
+          50.639201047521
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1017",
+        "line": "2",
+        "geo_point_2d": [
+          50.639201047521,
+          3.076314118337
+        ],
+        "name": "GARE LILLE EUROPE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0748942850149,
+          50.629636719335
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1002",
+        "line": "2",
+        "geo_point_2d": [
+          50.629636719335,
+          3.0748942850149
+        ],
+        "name": "LILLE GRAND PALAIS"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0502351989216,
+          50.618407401948
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "3",
+        "line": "1",
+        "geo_point_2d": [
+          50.618407401948,
+          3.0502351989216
+        ],
+        "name": "PORTE DES POSTES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0721029651317,
+          50.61804026565
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1004",
+        "line": "2",
+        "geo_point_2d": [
+          50.61804026565,
+          3.0721029651317
+        ],
+        "name": "PORTE DE DOUAI"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0186906263643,
+          50.640652054395
+        ]
+      },
+      "properties": {
+        "commune": "LOMME (LILLE)",
+        "insee": "355",
+        "objectid": "1011",
+        "line": "2",
+        "geo_point_2d": [
+          50.640652054395,
+          3.0186906263643
+        ],
+        "name": "LOMME LAMBERSART NOTEBART"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1280156843843,
+          50.624223962797
+        ]
+      },
+      "properties": {
+        "commune": "VILLENEUVE D'ASCQ",
+        "insee": "009",
+        "objectid": "14",
+        "line": "1",
+        "geo_point_2d": [
+          50.624223962797,
+          3.1280156843843
+        ],
+        "name": "PONT DE BOIS"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0073821985388,
+          50.646739411231
+        ]
+      },
+      "properties": {
+        "commune": "LOMME (LILLE)",
+        "insee": "355",
+        "objectid": "1013",
+        "line": "2",
+        "geo_point_2d": [
+          50.646739411231,
+          3.0073821985388
+        ],
+        "name": "MITTERIE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1566311193936,
+          50.725813399036
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1038",
+        "line": "2",
+        "geo_point_2d": [
+          50.725813399036,
+          3.1566311193936
+        ],
+        "name": "COLBERT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1793097149066,
+          50.690804213500996
+        ]
+      },
+      "properties": {
+        "commune": "ROUBAIX",
+        "insee": "512",
+        "objectid": "1030",
+        "line": "2",
+        "geo_point_2d": [
+          50.690804213500996,
+          3.1793097149066
+        ],
+        "name": "EUROTELEPORT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9851696428941,
+          50.645577778648
+        ]
+      },
+      "properties": {
+        "commune": "LOMME (LILLE)",
+        "insee": "355",
+        "objectid": "1015",
+        "line": "2",
+        "geo_point_2d": [
+          50.645577778648,
+          2.9851696428941
+        ],
+        "name": "BOURG"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1609568646194,
+          50.700694625056
+        ]
+      },
+      "properties": {
+        "commune": "ROUBAIX",
+        "insee": "512",
+        "objectid": "1033",
+        "line": "2",
+        "geo_point_2d": [
+          50.700694625056,
+          3.1609568646194
+        ],
+        "name": "ALSACE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1698029569285,
+          50.686915953434
+        ]
+      },
+      "properties": {
+        "commune": "ROUBAIX",
+        "insee": "512",
+        "objectid": "1029",
+        "line": "2",
+        "geo_point_2d": [
+          50.686915953434,
+          3.1698029569285
+        ],
+        "name": "ROUBAIX CHARLES DE GAULLE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1796430778053,
+          50.73945875721
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1041",
+        "line": "2",
+        "geo_point_2d": [
+          50.73945875721,
+          3.1796430778053
+        ],
+        "name": "BOURGOGNE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0706199051231,
+          50.632845340173
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1001",
+        "line": "2",
+        "geo_point_2d": [
+          50.632845340173,
+          3.0706199051231
+        ],
+        "name": "MAIRIE DE LILLE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0307630273727,
+          50.633894635444
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1009",
+        "line": "2",
+        "geo_point_2d": [
+          50.633894635444,
+          3.0307630273727
+        ],
+        "name": "BOIS BLANC"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1347607119403,
+          50.658436464971
+        ]
+      },
+      "properties": {
+        "commune": "VILLENEUVE D'ASCQ",
+        "insee": "009",
+        "objectid": "1023",
+        "line": "2",
+        "geo_point_2d": [
+          50.658436464971,
+          3.1347607119403
+        ],
+        "name": "JEAN JAURES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1808585501178,
+          50.743387432648
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1042",
+        "line": "2",
+        "geo_point_2d": [
+          50.743387432648,
+          3.1808585501178
+        ],
+        "name": "C.H. DRON"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1571264164043,
+          50.73242529958
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1039",
+        "line": "2",
+        "geo_point_2d": [
+          50.73242529958,
+          3.1571264164043
+        ],
+        "name": "PHALEMPINS"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0389619393586,
+          50.607948552343
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1",
+        "line": "1",
+        "geo_point_2d": [
+          50.607948552343,
+          3.0389619393586
+        ],
+        "name": "CHU EURASANTE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.070986975543,
+          50.63745511401
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "8",
+        "line": "1",
+        "geo_point_2d": [
+          50.63745511401,
+          3.070986975543
+        ],
+        "name": "GARE LILLE FLANDRES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0402471519973,
+          50.626189421219
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1007",
+        "line": "2",
+        "geo_point_2d": [
+          50.626189421219,
+          3.0402471519973
+        ],
+        "name": "CORMONTAIGNE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0357219815218,
+          50.629883151345
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1008",
+        "line": "2",
+        "geo_point_2d": [
+          50.629883151345,
+          3.0357219815218
+        ],
+        "name": "PORT DE LILLE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0992459199391,
+          50.642112147613
+        ]
+      },
+      "properties": {
+        "commune": "MONS EN BAROEUL",
+        "insee": "410",
+        "objectid": "1019",
+        "line": "2",
+        "geo_point_2d": [
+          50.642112147613,
+          3.0992459199391
+        ],
+        "name": "MONS SART"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1561488051861,
+          50.679469545579
+        ]
+      },
+      "properties": {
+        "commune": "CROIX",
+        "insee": "163",
+        "objectid": "1027",
+        "line": "2",
+        "geo_point_2d": [
+          50.679469545579,
+          3.1561488051861
+        ],
+        "name": "MAIRIE DE CROIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1625857342276,
+          50.717258836019
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1036",
+        "line": "2",
+        "geo_point_2d": [
+          50.717258836019,
+          3.1625857342276
+        ],
+        "name": "GARE DE TOURCOING"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.070986975543,
+          50.63745511401
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1044",
+        "line": "2",
+        "geo_point_2d": [
+          50.63745511401,
+          3.070986975543
+        ],
+        "name": "GARE LILLE FLANDRES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0526946603751,
+          50.626923035327
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "5",
+        "line": "1",
+        "geo_point_2d": [
+          50.626923035327,
+          3.0526946603751
+        ],
+        "name": "GAMBETTA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1705866352391,
+          50.736798650875
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1040",
+        "line": "2",
+        "geo_point_2d": [
+          50.736798650875,
+          3.1705866352391
+        ],
+        "name": "PONT DE NEUVILLE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0788465848365,
+          50.621045642813
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1003",
+        "line": "2",
+        "geo_point_2d": [
+          50.621045642813,
+          3.0788465848365
+        ],
+        "name": "PORTE DE VALENCIENNES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1297877806961,
+          50.663845081674
+        ]
+      },
+      "properties": {
+        "commune": "WASQUEHAL",
+        "insee": "646",
+        "objectid": "1024",
+        "line": "2",
+        "geo_point_2d": [
+          50.663845081674,
+          3.1297877806961
+        ],
+        "name": "WASQUEHAL PAVE DE LILLE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1089979644496,
+          50.627073553882
+        ]
+      },
+      "properties": {
+        "commune": "HELLEMMES (LILLE)",
+        "insee": "298",
+        "objectid": "12",
+        "line": "1",
+        "geo_point_2d": [
+          50.627073553882,
+          3.1089979644496
+        ],
+        "name": "MAIRIE D'HELLEMMES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.142372730611,
+          50.61157829499
+        ]
+      },
+      "properties": {
+        "commune": "VILLENEUVE D'ASCQ",
+        "insee": "009",
+        "objectid": "17",
+        "line": "1",
+        "geo_point_2d": [
+          50.61157829499,
+          3.142372730611
+        ],
+        "name": "CITE SCIENTIFIQUE PR GABILLARD"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1390050214264,
+          50.60534460177
+        ]
+      },
+      "properties": {
+        "commune": "VILLENEUVE D'ASCQ",
+        "insee": "009",
+        "objectid": "18",
+        "line": "1",
+        "geo_point_2d": [
+          50.60534460177,
+          3.1390050214264
+        ],
+        "name": "4 CANTONS STADE PIERRE MAUROY"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1308012477689,
+          50.619180161032
+        ]
+      },
+      "properties": {
+        "commune": "VILLENEUVE D'ASCQ",
+        "insee": "009",
+        "objectid": "15",
+        "line": "1",
+        "geo_point_2d": [
+          50.619180161032,
+          3.1308012477689
+        ],
+        "name": "VILLENEUVE D'ASCQ HOTEL DE VILLE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.995202852676,
+          50.646313795953
+        ]
+      },
+      "properties": {
+        "commune": "LOMME (LILLE)",
+        "insee": "355",
+        "objectid": "1014",
+        "line": "2",
+        "geo_point_2d": [
+          50.646313795953,
+          2.995202852676
+        ],
+        "name": "MAISON DES ENFANTS"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1604733424576,
+          50.704743107232
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1034",
+        "line": "2",
+        "geo_point_2d": [
+          50.704743107232,
+          3.1604733424576
+        ],
+        "name": "MERCURE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1406254403258,
+          50.616893725495
+        ]
+      },
+      "properties": {
+        "commune": "VILLENEUVE D'ASCQ",
+        "insee": "009",
+        "objectid": "16",
+        "line": "1",
+        "geo_point_2d": [
+          50.616893725495,
+          3.1406254403258
+        ],
+        "name": "TRIOLO"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0886615872234,
+          50.642305453295
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1018",
+        "line": "2",
+        "geo_point_2d": [
+          50.642305453295,
+          3.0886615872234
+        ],
+        "name": "SAINT MAURICE PELLEVOISIN"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1160483060991,
+          50.625166410243
+        ]
+      },
+      "properties": {
+        "commune": "HELLEMMES (LILLE)",
+        "insee": "298",
+        "objectid": "13",
+        "line": "1",
+        "geo_point_2d": [
+          50.625166410243,
+          3.1160483060991
+        ],
+        "name": "SQUARE FLANDRES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.036355327884,
+          50.613177683391
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "2",
+        "line": "1",
+        "geo_point_2d": [
+          50.613177683391,
+          3.036355327884
+        ],
+        "name": "CHU CENTRE OSCAR LAMBRET"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.163950788543,
+          50.695379430727
+        ]
+      },
+      "properties": {
+        "commune": "ROUBAIX",
+        "insee": "512",
+        "objectid": "1032",
+        "line": "2",
+        "geo_point_2d": [
+          50.695379430727,
+          3.163950788543
+        ],
+        "name": "GARE JEAN LEBAS ROUBAIX"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0138946533497,
+          50.644383500957
+        ]
+      },
+      "properties": {
+        "commune": "LOMME (LILLE)",
+        "insee": "355",
+        "objectid": "1012",
+        "line": "2",
+        "geo_point_2d": [
+          50.644383500957,
+          3.0138946533497
+        ],
+        "name": "PONT SUPERIEUR"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9742572014525,
+          50.652108723767
+        ]
+      },
+      "properties": {
+        "commune": "LOMME (LILLE)",
+        "insee": "355",
+        "objectid": "1016",
+        "line": "2",
+        "geo_point_2d": [
+          50.652108723767,
+          2.9742572014525
+        ],
+        "name": "SAINT PHILIBERT"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1263926515765,
+          50.650069811661
+        ]
+      },
+      "properties": {
+        "commune": "VILLENEUVE D'ASCQ",
+        "insee": "009",
+        "objectid": "1022",
+        "line": "2",
+        "geo_point_2d": [
+          50.650069811661,
+          3.1263926515765
+        ],
+        "name": "LES PRES EDGARD PISANI"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1314556310117,
+          50.669749052399
+        ]
+      },
+      "properties": {
+        "commune": "WASQUEHAL",
+        "insee": "646",
+        "objectid": "1025",
+        "line": "2",
+        "geo_point_2d": [
+          50.669749052399,
+          3.1314556310117
+        ],
+        "name": "WASQUEHAL HOTEL DE VILLE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1599739344004,
+          50.720926979344
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1037",
+        "line": "2",
+        "geo_point_2d": [
+          50.720926979344,
+          3.1599739344004
+        ],
+        "name": "TOURCOING CENTRE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0978553960575,
+          50.630130179086
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "11",
+        "line": "1",
+        "geo_point_2d": [
+          50.630130179086,
+          3.0978553960575
+        ],
+        "name": "MARBRERIE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0243390103697,
+          50.637338607553
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1010",
+        "line": "2",
+        "geo_point_2d": [
+          50.637338607553,
+          3.0243390103697
+        ],
+        "name": "CANTELEU"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.174713573281,
+          50.69179865638
+        ]
+      },
+      "properties": {
+        "commune": "ROUBAIX",
+        "insee": "512",
+        "objectid": "1031",
+        "line": "2",
+        "geo_point_2d": [
+          50.69179865638,
+          3.174713573281
+        ],
+        "name": "ROUBAIX GRAND PLACE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1461794540337,
+          50.674719456721
+        ]
+      },
+      "properties": {
+        "commune": "CROIX",
+        "insee": "163",
+        "objectid": "1026",
+        "line": "2",
+        "geo_point_2d": [
+          50.674719456721,
+          3.1461794540337
+        ],
+        "name": "CROIX CENTRE"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0454140920183,
+          50.622032594138
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "1006",
+        "line": "2",
+        "geo_point_2d": [
+          50.622032594138,
+          3.0454140920183
+        ],
+        "name": "MONTEBELLO"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0515397947622,
+          50.623433643822
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "4",
+        "line": "1",
+        "geo_point_2d": [
+          50.623433643822,
+          3.0515397947622
+        ],
+        "name": "WAZEMMES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0867928451557,
+          50.636699555761
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "9",
+        "line": "1",
+        "geo_point_2d": [
+          50.636699555761,
+          3.0867928451557
+        ],
+        "name": "CAULIER"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0911541268409,
+          50.632779299555
+        ]
+      },
+      "properties": {
+        "commune": "LILLE",
+        "insee": "350",
+        "objectid": "10",
+        "line": "1",
+        "geo_point_2d": [
+          50.632779299555,
+          3.0911541268409
+        ],
+        "name": "FIVES"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1190927927093,
+          50.642081629047
+        ]
+      },
+      "properties": {
+        "commune": "MONS EN BAROEUL",
+        "insee": "410",
+        "objectid": "1021",
+        "line": "2",
+        "geo_point_2d": [
+          50.642081629047,
+          3.1190927927093
+        ],
+        "name": "FORT DE MONS"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1601288113732,
+          50.711019683667
+        ]
+      },
+      "properties": {
+        "commune": "TOURCOING",
+        "insee": "599",
+        "objectid": "1035",
+        "line": "2",
+        "geo_point_2d": [
+          50.711019683667,
+          3.1601288113732
+        ],
+        "name": "CARLIERS"
+      }
+    }
+  ]
+}

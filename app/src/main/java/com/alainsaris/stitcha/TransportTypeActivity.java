@@ -1,4 +1,4 @@
-package com.alainsaris.thisisit;
+package com.alainsaris.stitcha;
 
 import androidx.appcompat.app.AppCompatActivity;
 

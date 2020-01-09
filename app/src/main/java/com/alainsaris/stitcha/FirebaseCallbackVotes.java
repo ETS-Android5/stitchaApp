@@ -1,8 +1,6 @@
-package com.alainsaris.thisisit;
+package com.alainsaris.stitcha;
 
 import android.view.View;
-
-import java.util.List;
 
 public interface FirebaseCallbackVotes {
     void onCallback(View view);
