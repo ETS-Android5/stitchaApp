@@ -1,0 +1,895 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2019-12-10T00:38:02Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/53954482",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Basso Cambo",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2688592"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3922956,
+          43.569943
+        ]
+      },
+      "id": "node/53954482"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231709544",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Compans Caffarelli",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2990313",
+        "wikipedia": "fr:Compans-Caffarelli (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4358405,
+          43.6108819
+        ]
+      },
+      "id": "node/231709544"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231709562",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Minimes - Claude Nougaro",
+        "network": "Ligne B",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "search_name": "Minimes Claude Nougaro",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3315077",
+        "wikipedia": "fr:Minimes – Claude-Nougaro (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4356959,
+          43.6204016
+        ]
+      },
+      "id": "node/231709562"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231716610",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Trois Cocus",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3539895"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4441741,
+          43.6380368
+        ]
+      },
+      "id": "node/231716610"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231716614",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Borderouge",
+        "name:oc": "Bòrda Roja",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2910749"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4525675,
+          43.6407791
+        ]
+      },
+      "id": "node/231716614"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231747822",
+        "man_made": "surveillance",
+        "name": "Faculté de Pharmacie",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3064245",
+        "wikipedia": "fr:Faculté-de-Pharmacie (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4645122,
+          43.5680852
+        ]
+      },
+      "id": "node/231747822"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231747830",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Rangueil",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3418960"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4618757,
+          43.5747853
+        ]
+      },
+      "id": "node/231747830"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231747846",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Saouzelong",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3473097"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4592832,
+          43.5795327
+        ]
+      },
+      "id": "node/231747846"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231747856",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Saint-Agne SNCF",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q3461684"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4498764,
+          43.580339
+        ]
+      },
+      "id": "node/231747856"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231747882",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Empalot",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "search_name": "Empalot Métro",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3053180"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.442089,
+          43.5798541
+        ]
+      },
+      "id": "node/231747882"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231747929",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Carmes",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2939650",
+        "wikipedia": "fr:Carmes (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4454502,
+          43.5977639
+        ]
+      },
+      "id": "node/231747929"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231747949",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Jean Jaurès",
+        "name:oc": "Joan Jaurés",
+        "operator": "Tisséo",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3166472"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4488024,
+          43.6057364
+        ]
+      },
+      "id": "node/231747949"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231750682",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Université Paul Sabatier",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2380337"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4632229,
+          43.5609723
+        ]
+      },
+      "id": "node/231750682"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/231752329",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Ramonville",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "search_name": "Ramonville Métro",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3418560"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4763835,
+          43.5557774
+        ]
+      },
+      "id": "node/231752329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248512541",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Jolimont",
+        "name:oc": "Bèlmont",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3183147"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4633846,
+          43.6152782
+        ]
+      },
+      "id": "node/248512541"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248533209",
+        "man_made": "surveillance",
+        "name": "Capitole",
+        "name:oc": "Capitòli",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "toilets:wheelchair": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2937487",
+        "wikipedia": "fr:Capitole (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.445382,
+          43.6044765
+        ]
+      },
+      "id": "node/248533209"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248533272",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Esquirol",
+        "name:oc": "Esquiròl",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3058627",
+        "wikipedia": "fr:Esquirol (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4439629,
+          43.6001307
+        ]
+      },
+      "id": "node/248533272"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248533275",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Arènes",
+        "name:oc": "Arenas",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "tram": "yes",
+        "wikidata": "Q512341"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4185414,
+          43.593404
+        ]
+      },
+      "id": "node/248533275"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248533388",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Fontaine Lestang",
+        "name:oc": "Font l'Estanh",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3075979"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4184089,
+          43.5875305
+        ]
+      },
+      "id": "node/248533388"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248533539",
+        "man_made": "surveillance",
+        "name": "Mermoz",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3306584"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4152039,
+          43.5835153
+        ]
+      },
+      "id": "node/248533539"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248533545",
+        "man_made": "surveillance",
+        "name": "Bagatelle",
+        "name:oc": "Bagatèla",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2879000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4121307,
+          43.5798869
+        ]
+      },
+      "id": "node/248533545"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248533582",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Mirail Université",
+        "name:oc": "Miralh Universitat",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q923196",
+        "wikipedia": "fr:Mirail – Université"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.402032,
+          43.5745945
+        ]
+      },
+      "id": "node/248533582"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248533979",
+        "man_made": "surveillance",
+        "name": "Reynerie",
+        "name:oc": "Reinariá",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2752475"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4018908,
+          43.5708457
+        ]
+      },
+      "id": "node/248533979"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/248534048",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Bellefontaine",
+        "name:oc": "Belafont",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2612871"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3982852,
+          43.5660644
+        ]
+      },
+      "id": "node/248534048"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/250291540",
+        "man_made": "surveillance",
+        "name": "Saint-Cyprien – République",
+        "name:oc": "Sant-Çubran – Republica",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3462014",
+        "wikipedia": "fr:Saint-Cyprien – République (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4316578,
+          43.5979948
+        ]
+      },
+      "id": "node/250291540"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/286356305",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Canal du Midi",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2935865"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.433763,
+          43.6153706
+        ]
+      },
+      "id": "node/286356305"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/286356966",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Barrière de Paris",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2885652"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4338226,
+          43.6267764
+        ]
+      },
+      "id": "node/286356966"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/286474709",
+        "bus": "yes",
+        "layer": "-3",
+        "level": "-3",
+        "man_made": "surveillance",
+        "name": "Marengo SNCF",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3290417"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4550373,
+          43.6107605
+        ]
+      },
+      "id": "node/286474709"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/298873524",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Palais de Justice",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4444268,
+          43.5924473
+        ]
+      },
+      "id": "node/298873524"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/314282624",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Roseraie",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3442568"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4696735,
+          43.6199318
+        ]
+      },
+      "id": "node/314282624"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/314563949",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Jeanne d'Arc",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3175951",
+        "wikipedia": "fr:Jeanne-d’Arc (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4454351,
+          43.6088889
+        ]
+      },
+      "id": "node/314563949"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/314565429",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "François Verdier",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3083675"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4522992,
+          43.6003579
+        ]
+      },
+      "id": "node/314565429"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/314948432",
+        "man_made": "surveillance",
+        "name": "Saint-Michel - Marcel Langer",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3463014"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4470932,
+          43.5861145
+        ]
+      },
+      "id": "node/314948432"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/333113201",
+        "bus": "yes",
+        "man_made": "surveillance",
+        "name": "Argoulets",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2861054"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4768303,
+          43.6243703
+        ]
+      },
+      "id": "node/333113201"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/333182010",
+        "man_made": "surveillance",
+        "name": "Balma Gramont",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2881451"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4827089,
+          43.6291183
+        ]
+      },
+      "id": "node/333182010"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2334762400",
+        "bus": "yes",
+        "level": "-1",
+        "man_made": "surveillance",
+        "name": "Patte d'Oie",
+        "name:oc": "Pè d'Auca",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3370144"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.4232471,
+          43.5964459
+        ]
+      },
+      "id": "node/2334762400"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2798905591",
+        "name": "La Vache",
+        "name:oc": "La Vaco",
+        "network": "Métro ligne B",
+        "operator": "Tisséo",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3213405",
+        "wikipedia": "fr:La Vache (métro de Toulouse)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.435535,
+          43.6338136
+        ]
+      },
+      "id": "node/2798905591"
+    }
+  ]
+}

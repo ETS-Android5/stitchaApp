@@ -1,0 +1,1658 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2019-10-26T11:34:02Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/302942316",
+        "LMCU:NOM_ARRET": "REPUBLIQUE BEAUX ARTS",
+        "LMCU:OBJECTID": "14",
+        "covered": "yes",
+        "name": "République - Beaux-Arts",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35040481M",
+        "shelter": "yes",
+        "station": "subway",
+        "subway": "yes",
+        "tactile_paving": "no",
+        "wheelchair": "yes",
+        "wikidata": "Q400325",
+        "wikipedia": "fr:République - Beaux-Arts (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0608205,
+          50.6316436
+        ]
+      },
+      "id": "node/302942316"
+    },
+    {
+          "type": "Feature",
+          "properties": {
+            "@id": "node/302942316",
+            "LMCU:NOM_ARRET": "TRIOLO",
+            "LMCU:OBJECTID": "14",
+            "covered": "yes",
+            "name": "Triolo",
+            "network": "Ilévia",
+            "operator": "Keolis Lille Métropole",
+            "public_transport": "station",
+            "railway": "station",
+            "ref:FR:LMCU": "35040481M",
+            "shelter": "yes",
+            "station": "subway",
+            "subway": "yes",
+            "tactile_paving": "no",
+            "wheelchair": "yes",
+            "wikidata": "Q400325",
+            "wikipedia": "fr:République - Beaux-Arts (métro de Lille Métropole)"
+          },
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+               3.141104,
+               50.616739
+            ]
+          },
+          "id": "node/302942316"
+    },
+    {
+              "type": "Feature",
+              "properties": {
+                "@id": "node/302942316",
+                "LMCU:NOM_ARRET": "CITE SCIENTIFIQUE",
+                "LMCU:OBJECTID": "14",
+                "covered": "yes",
+                "name": "Cite scientifique",
+                "network": "Ilévia",
+                "operator": "Keolis Lille Métropole",
+                "public_transport": "station",
+                "railway": "station",
+                "ref:FR:LMCU": "35040481M",
+                "shelter": "yes",
+                "station": "subway",
+                "subway": "yes",
+                "tactile_paving": "no",
+                "wheelchair": "yes",
+                "wikidata": "Q400325",
+                "wikipedia": "fr:République - Beaux-Arts (métro de Lille Métropole)"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                   3.142433,
+                   50.611614,
+                ]
+              },
+              "id": "node/302942316"
+    },
+    {
+                  "type": "Feature",
+                  "properties": {
+                    "@id": "node/302942316",
+                    "LMCU:NOM_ARRET": "QUATRE CANTONS",
+                    "LMCU:OBJECTID": "14",
+                    "covered": "yes",
+                    "name": "Quatre cantons",
+                    "network": "Ilévia",
+                    "operator": "Keolis Lille Métropole",
+                    "public_transport": "station",
+                    "railway": "station",
+                    "ref:FR:LMCU": "35040481M",
+                    "shelter": "yes",
+                    "station": "subway",
+                    "subway": "yes",
+                    "tactile_paving": "no",
+                    "wheelchair": "yes",
+                    "wikidata": "Q400325",
+                    "wikipedia": "fr:République - Beaux-Arts (métro de Lille Métropole)"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                       3.139021,
+                       50.605385
+                    ]
+                  },
+                  "id": "node/302942316"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/302942324",
+        "LMCU:NOM_ARRET": "RIHOUR",
+        "LMCU:OBJECTID": "15",
+        "name": "Rihour",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35041335M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "no",
+        "wikidata": "Q533362",
+        "wikipedia": "fr:Rihour (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0629969,
+          50.6356739
+        ]
+      },
+      "id": "node/302942324"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/367098730",
+        "LMCU:NOM_ARRET": "HOTEL DE VILLE",
+        "LMCU:OBJECTID": "3",
+        "name": "Villeneuve d'Ascq – Hôtel de Ville",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "0091957M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q400330",
+        "wikipedia": "fr:Villeneuve-d'Ascq - Hôtel de Ville (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1308475,
+          50.6191121
+        ]
+      },
+      "id": "node/367098730"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/389432270",
+        "LMCU:NOM_ARRET": "PORTE DES POSTES",
+        "LMCU:OBJECTID": "18",
+        "name": "Porte des Postes",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35040750M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2487934",
+        "wikipedia": "fr:Porte des Postes (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.050264,
+          50.6184213
+        ]
+      },
+      "id": "node/389432270"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/392217616",
+        "LMCU:NOM_ARRET": "LEZENNES",
+        "LMCU:OBJECTID": "7",
+        "air_conditioning": "no",
+        "name": "Square Flandres",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "29828180M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "website": "https://www.ilevia.fr",
+        "wheelchair": "yes",
+        "wikidata": "Q3237457",
+        "wikipedia": "fr:Square Flandres (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1160694,
+          50.6251809
+        ]
+      },
+      "id": "node/392217616"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/392217617",
+        "LMCU:NOM_ARRET": "HELLEMMES",
+        "LMCU:OBJECTID": "6",
+        "air_conditioning": "no",
+        "internet_access": "yes",
+        "name": "Mairie d'Hellemmes",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "29828349M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "website": "https://www.ilevia.fr",
+        "wheelchair": "yes",
+        "wikidata": "Q3129853",
+        "wikipedia": "fr:Hellemmes (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1090277,
+          50.6270877
+        ]
+      },
+      "id": "node/392217617"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/392217618",
+        "LMCU:NOM_ARRET": "MARBRERIE",
+        "LMCU:OBJECTID": "13",
+        "air_conditioning": "no",
+        "internet_access": "yes",
+        "name": "Marbrerie",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35040310M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "website": "https://www.ilevia.fr",
+        "wheelchair": "yes",
+        "wikidata": "Q2383251",
+        "wikipedia": "fr:Marbrerie (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0978834,
+          50.6301441
+        ]
+      },
+      "id": "node/392217618"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/403762114",
+        "LMCU:NOM_ARRET": "ROUBAIX CHARLES DE GAULLE",
+        "LMCU:OBJECTID": "48",
+        "name": "Roubaix - Charles de Gaulle",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "51261963M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2150669",
+        "wikipedia": "fr:Roubaix - Charles-de-Gaulle (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1696483,
+          50.687024
+        ]
+      },
+      "id": "node/403762114"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/405255871",
+        "LMCU:NOM_ARRET": "CAULIER",
+        "LMCU:OBJECTID": "8",
+        "air_conditioning": "no",
+        "internet_access": "yes",
+        "name": "Caulier",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35038966M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "website": "https://www.ilevia.fr",
+        "wheelchair": "yes",
+        "wikidata": "Q2274687",
+        "wikipedia": "fr:Caulier (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0868209,
+          50.6367139
+        ]
+      },
+      "id": "node/405255871"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/406517672",
+        "LMCU:NOM_ARRET": "MAIRIE DE LILLE",
+        "LMCU:OBJECTID": "29",
+        "name": "Mairie de Lille",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "ref:FR:LMCU": "35040631M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2595165",
+        "wikipedia": "fr:Mairie de Lille (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0706587,
+          50.6328076
+        ]
+      },
+      "id": "node/406517672"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/409490563",
+        "LMCU:NOM_ARRET": "ROUBAIX GRAND PLACE",
+        "LMCU:OBJECTID": "49",
+        "name": "Roubaix - Grand Place",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "51261552M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3443072",
+        "wikipedia": "fr:Roubaix - Grand-Place (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1746827,
+          50.6918489
+        ]
+      },
+      "id": "node/409490563"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/409490567",
+        "LMCU:NOM_ARRET": "GARE JEAN LEBAS",
+        "LMCU:OBJECTID": "47",
+        "name": "Gare Jean Lebas Roubaix",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "51260845M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2783641",
+        "wikipedia": "fr:Gare Jean-Lebas Roubaix (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1639669,
+          50.6953868
+        ]
+      },
+      "id": "node/409490567"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/409490569",
+        "LMCU:NOM_ARRET": "ALSACE",
+        "LMCU:OBJECTID": "44",
+        "name": "Alsace",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "51262468M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q690763",
+        "wikipedia": "fr:Alsace (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1610327,
+          50.700734
+        ]
+      },
+      "id": "node/409490569"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/412283375",
+        "LMCU:NOM_ARRET": "PORTE D'ARRAS",
+        "LMCU:OBJECTID": "32",
+        "name": "Porte d'Arras",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35038029M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1865573",
+        "wikipedia": "fr:Porte d'Arras (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.062276,
+          50.6176023
+        ]
+      },
+      "id": "node/412283375"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/428622046",
+        "LMCU:NOM_ARRET": "WASQUEHAL PAVE DE LILLE",
+        "LMCU:OBJECTID": "60",
+        "name": "Wasquehal - Pavé de Lille",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "64678481M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2545496",
+        "wikipedia": "fr:Wasquehal - Pavé de Lille (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1300368,
+          50.664002
+        ]
+      },
+      "id": "node/428622046"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/428622047",
+        "LMCU:NOM_ARRET": "JEAN JAURES",
+        "LMCU:OBJECTID": "19",
+        "name": "Jean Jaurès",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "009848M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2798993",
+        "wikipedia": "fr:Jean-Jaurès (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1347898,
+          50.6584519
+        ]
+      },
+      "id": "node/428622047"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/428622057",
+        "LMCU:NOM_ARRET": "LES PRES",
+        "LMCU:OBJECTID": "20",
+        "name": "Les Prés - Edgard-Pisani",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "00952289M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2898598",
+        "wikipedia": "fr:Les Prés - Edgard-Pisani (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1264359,
+          50.6500937
+        ]
+      },
+      "id": "node/428622057"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/428622060",
+        "LMCU:NOM_ARRET": "FORT DE MONS",
+        "LMCU:OBJECTID": "41",
+        "building": "yes",
+        "name": "Fort de Mons",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "41052265M",
+        "source": "extraction vectorielle v1 cadastre-dgi-fr source : Direction Générale des Impôts - Cadas. Mise à jour : 2010",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q646267",
+        "wikipedia": "fr:Fort de Mons (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1194332,
+          50.6420581
+        ]
+      },
+      "id": "node/428622060"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/439792372",
+        "LMCU:NOM_ARRET": "PORT DE LILLE",
+        "LMCU:OBJECTID": "31",
+        "name": "Port de Lille",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35041873M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1869498",
+        "wikipedia": "fr:Port de Lille (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0357267,
+          50.6299552
+        ]
+      },
+      "id": "node/439792372"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/469323707",
+        "LMCU:NOM_ARRET": "GAMBETTA",
+        "LMCU:OBJECTID": "12",
+        "name": "Gambetta",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35039727M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q1864443",
+        "wikipedia": "fr:Gambetta (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0527224,
+          50.6269373
+        ]
+      },
+      "id": "node/469323707"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/476644664",
+        "LMCU:NOM_ARRET": "LOMME LAMBERSART",
+        "LMCU:OBJECTID": "28",
+        "name": "Lomme – Lambersart – Arthur-Notebart",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35590280M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2254090",
+        "wikipedia": "fr:Lomme - Lambersart - Arthur-Notebart (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.018728,
+          50.6406757
+        ]
+      },
+      "id": "node/476644664"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/476644665",
+        "LMCU:NOM_ARRET": "PONT SUPERIEUR",
+        "LMCU:OBJECTID": "39",
+        "name": "Pont Supérieur",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35543117M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1923237",
+        "wikipedia": "fr:Pont Supérieur (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0138888,
+          50.6443814
+        ]
+      },
+      "id": "node/476644665"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/476644666",
+        "LMCU:NOM_ARRET": "MITTERIE",
+        "LMCU:OBJECTID": "38",
+        "name": "Mitterie",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35543111M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q519790",
+        "wikipedia": "fr:Mitterie (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0073866,
+          50.6467613
+        ]
+      },
+      "id": "node/476644666"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/477643149",
+        "LMCU:NOM_ARRET": "CHR OSCAR LAMBRET",
+        "LMCU:OBJECTID": "10",
+        "name": "CHU – Centre Oscar Lambret",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35040162M",
+        "source": "Bing",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2202767",
+        "wikipedia": "fr:CHR Oscar-Lambret (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0364433,
+          50.6130836
+        ]
+      },
+      "id": "node/477643149"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/477643160",
+        "LMCU:NOM_ARRET": "CHR CALMETTE",
+        "LMCU:OBJECTID": "9",
+        "name": "CHU – Eurasanté",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "ref:FR:LMCU": "35040414M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2469572",
+        "wikipedia": "fr:CHU - Eurasanté (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0389748,
+          50.6080406
+        ]
+      },
+      "id": "node/477643160"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/497394889",
+        "LMCU:NOM_ARRET": "LILLE GRAND PALAIS",
+        "LMCU:OBJECTID": "27",
+        "name": "Lille Grand Palais",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35041458M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2421499",
+        "wikipedia": "fr:Lille Grand Palais (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0749235,
+          50.6296509
+        ]
+      },
+      "id": "node/497394889"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/662109551",
+        "LMCU:NOM_ARRET": "MERCURE",
+        "LMCU:OBJECTID": "54",
+        "name": "Mercure",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "59972632M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3306396",
+        "wikipedia": "fr:Mercure (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1604362,
+          50.7047657
+        ]
+      },
+      "id": "node/662109551"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/664866039",
+        "LMCU:NOM_ARRET": "CARLIERS",
+        "LMCU:OBJECTID": "52",
+        "name": "Carliers",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "59973550M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2377282",
+        "wikipedia": "fr:Carliers (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1597069,
+          50.7109732
+        ]
+      },
+      "id": "node/664866039"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/664927006",
+        "LMCU:NOM_ARRET": "TOURCOING SEBASTOPOL",
+        "LMCU:OBJECTID": "58",
+        "name": "Gare de Tourcoing",
+        "network": "Ilévia",
+        "note": "Bouche metro approxiamtif",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "59972148M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2512573",
+        "wikipedia": "fr:Gare de Tourcoing (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1626423,
+          50.7172457
+        ]
+      },
+      "id": "node/664927006"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1315981866",
+        "LMCU:NOM_ARRET": "PHALEMPIN",
+        "LMCU:OBJECTID": "55",
+        "name": "Phalempins",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "ref:FR:LMCU": "59973654M",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q1875670",
+        "wikipedia": "fr:Phalempins (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1576346,
+          50.7323439
+        ]
+      },
+      "id": "node/1315981866"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1315981886",
+        "LMCU:NOM_ARRET": "PONT DE NEUVILLE",
+        "LMCU:OBJECTID": "56",
+        "name": "Pont de Neuville",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "59973042M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2191330",
+        "wikipedia": "fr:Pont de Neuville (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1706389,
+          50.7367941
+        ]
+      },
+      "id": "node/1315981886"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1635759514",
+        "LMCU:NOM_ARRET": "CORMONTAIGNE",
+        "LMCU:OBJECTID": "25",
+        "name": "Cormontaigne",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "ref:FR:LMCU": "35040846M",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2997420",
+        "wikipedia": "fr:Cormontaigne (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0402998,
+          50.6262355
+        ]
+      },
+      "id": "node/1635759514"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1648232235",
+        "bicycle": "permissive",
+        "name": "Eurotéléport",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2967403",
+        "wikipedia": "fr:Eurotéléport (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1793366,
+          50.6908411
+        ]
+      },
+      "id": "node/1648232235"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592504",
+        "LMCU:NOM_ARRET": "BOIS BLANC",
+        "LMCU:OBJECTID": "24",
+        "name": "Bois Blancs",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35038824M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2008",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2584011",
+        "wikipedia": "fr:Bois Blancs (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0304363,
+          50.6345058
+        ]
+      },
+      "id": "node/2061592504"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592702",
+        "LMCU:NOM_ARRET": "CANTELEU",
+        "LMCU:OBJECTID": "23",
+        "name": "Canteleu",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "32890273M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1948845",
+        "wikipedia": "fr:Canteleu (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0246674,
+          50.6371343
+        ]
+      },
+      "id": "node/2061592702"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592803",
+        "LMCU:NOM_ARRET": "MAIRIE DE MONS",
+        "LMCU:OBJECTID": "42",
+        "name": "Mairie de Mons",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "41052272M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2615428",
+        "wikipedia": "fr:Mairie de Mons (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1100713,
+          50.6420965
+        ]
+      },
+      "id": "node/2061592803"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592819",
+        "LMCU:NOM_ARRET": "SAINT MAURICE PELLEVOISIN",
+        "LMCU:OBJECTID": "35",
+        "air_conditioning": "no",
+        "name": "Saint-Maurice Pellevoisin",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35039037M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "website": "https://www.ilevia.fr",
+        "wikidata": "Q2516818",
+        "wikipedia": "fr:Saint-Maurice Pellevoisin (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0887019,
+          50.6423001
+        ]
+      },
+      "id": "node/2061592819"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592855",
+        "LMCU:NOM_ARRET": "BOURG",
+        "LMCU:OBJECTID": "36",
+        "name": "Bourg",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35543093M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2241261",
+        "wikipedia": "fr:Bourg (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9851942,
+          50.645574
+        ]
+      },
+      "id": "node/2061592855"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592877",
+        "LMCU:NOM_ARRET": "MAISON DES ENFANTS",
+        "LMCU:OBJECTID": "37",
+        "name": "Maison des Enfants",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35543102M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2748975",
+        "wikipedia": "fr:Maison des Enfants (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9952327,
+          50.6463068
+        ]
+      },
+      "id": "node/2061592877"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592933",
+        "LMCU:NOM_ARRET": "WASQUEHAL HOTEL DE VILLE",
+        "LMCU:OBJECTID": "59",
+        "name": "Wasquehal - Hôtel de Ville",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "64678374M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2540107",
+        "wikipedia": "fr:Wasquehal - Hôtel de ville (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1313678,
+          50.6698786
+        ]
+      },
+      "id": "node/2061592933"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592940",
+        "LMCU:NOM_ARRET": "CROIX CENTRE",
+        "LMCU:OBJECTID": "21",
+        "name": "Croix Centre",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "16313770M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2219725",
+        "wikipedia": "fr:Croix - Centre (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1460541,
+          50.6746838
+        ]
+      },
+      "id": "node/2061592940"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061592951",
+        "LMCU:NOM_ARRET": "MAIRIE DE CROIX",
+        "LMCU:OBJECTID": "22",
+        "name": "Mairie de Croix",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "16313428M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q630551",
+        "wikipedia": "fr:Mairie de Croix (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1562925,
+          50.6792629
+        ]
+      },
+      "id": "node/2061592951"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061595039",
+        "LMCU:NOM_ARRET": "TOURCOING CENTRE",
+        "LMCU:OBJECTID": "57",
+        "name": "Tourcoing - Centre",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "59972151M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2435195",
+        "wikipedia": "fr:Tourcoing - Centre (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1600924,
+          50.7209577
+        ]
+      },
+      "id": "node/2061595039"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061595049",
+        "LMCU:NOM_ARRET": "COLBERT",
+        "LMCU:OBJECTID": "53",
+        "name": "Colbert",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "59972635M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2982361",
+        "wikipedia": "fr:Colbert (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1565704,
+          50.7258472
+        ]
+      },
+      "id": "node/2061595049"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061595075",
+        "LMCU:NOM_ARRET": "BOURGOGNE",
+        "LMCU:OBJECTID": "50",
+        "name": "Bourgogne",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "59972442M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q1872540",
+        "wikipedia": "fr:Bourgogne (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1796544,
+          50.7394825
+        ]
+      },
+      "id": "node/2061595075"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2061595085",
+        "LMCU:NOM_ARRET": "C.H. DRON",
+        "LMCU:OBJECTID": "51",
+        "name": "C.H. Dron",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "ref:FR:LMCU": "59973391M",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2684436",
+        "wikipedia": "fr:CH Dron (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.180859,
+          50.7434032
+        ]
+      },
+      "id": "node/2061595085"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2062882287",
+        "LMCU:NOM_ARRET": "WAZEMMES",
+        "LMCU:OBJECTID": "12",
+        "name": "Wazemmes",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "stop_position",
+        "railway": "station",
+        "ref:FR:LMCU": "35039727M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q1824631",
+        "wikipedia": "fr:Wazemmes (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0515983,
+          50.6234558
+        ]
+      },
+      "id": "node/2062882287"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2062882464",
+        "LMCU:NOM_ARRET": "FIVES",
+        "LMCU:OBJECTID": "11",
+        "air_conditioning": "no",
+        "internet_access": "yes",
+        "name": "Fives",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35040302M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "website": "https://www.ilevia.fr",
+        "wheelchair": "yes",
+        "wikidata": "Q1936001",
+        "wikipedia": "fr:Fives (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0905047,
+          50.633041
+        ]
+      },
+      "id": "node/2062882464"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2208333145",
+        "LMCU:NOM_ARRET": "Gare Lille Europe",
+        "LMCU:OBJECTID": "26",
+        "alt_name": "Gare Lille Europe",
+        "name": "Gare Lille Europe",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35041651M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0763627,
+          50.6392683
+        ]
+      },
+      "id": "node/2208333145"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3326895519",
+        "LMCU:NOM_ARRET": "EPEULE MONTESQUIEU",
+        "LMCU:OBJECTID": "48",
+        "name": "Épeule - Montesquieu",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "51261963M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3589099",
+        "wikipedia": "fr:Épeule - Montesquieu (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.163084,
+          50.6839451
+        ]
+      },
+      "id": "node/3326895519"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5268053621",
+        "LMCU:NOM_ARRET": "GARE LILLE FLANDRES",
+        "LMCU:OBJECTID": "17",
+        "name": "Gare Lille Flandres",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35038445M",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2468999",
+        "wikipedia": "fr:Gare Lille-Flandres (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0710579,
+          50.637416
+        ]
+      },
+      "id": "node/5268053621"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6132956431",
+        "LMCU:NOM_ARRET": "MONTEBELLO",
+        "LMCU:OBJECTID": "30",
+        "name": "Montebello",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "35040052M",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2678750",
+        "wikipedia": "fr:Montebello (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0454338,
+          50.6220459
+        ]
+      },
+      "id": "node/6132956431"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6525837594",
+        "LMCU:NOM_ARRET": "PONT DE BOIS",
+        "LMCU:OBJECTID": "4",
+        "name": "Pont de Bois",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "00999M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "website": "https://www.ilevia.fr",
+        "wheelchair": "yes",
+        "wikidata": "Q3396877",
+        "wikipedia": "fr:Pont de Bois (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.1280076,
+          50.6242683
+        ]
+      },
+      "id": "node/6525837594"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6638170780",
+        "LMCU:NOM_ARRET": "MONS SART",
+        "LMCU:OBJECTID": "43",
+        "name": "Mons Sarts",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "public_transport": "station",
+        "railway": "station",
+        "ref:FR:LMCU": "41051846M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wikidata": "Q2504177",
+        "wikipedia": "fr:Mons Sarts (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.0992754,
+          50.642081
+        ]
+      },
+      "id": "node/6638170780"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6659546245",
+        "LMCU:NOM_ARRET": "SAINT PHILIBERT",
+        "LMCU:OBJECTID": "40",
+        "name": "Saint-Philibert",
+        "network": "Ilévia",
+        "operator": "Keolis Lille Métropole",
+        "railway": "station",
+        "ref:FR:LMCU": "35543728M",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre;mise à jour : 2009",
+        "station": "subway",
+        "subway": "yes",
+        "train": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3463148",
+        "wikipedia": "fr:Saint-Philibert (métro de Lille Métropole)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.9742848,
+          50.6521071
+        ]
+      },
+      "id": "node/6659546245"
+    }
+  ]
+}

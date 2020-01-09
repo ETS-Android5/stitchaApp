@@ -1,0 +1,897 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2019-12-10T00:32:02Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365142247",
+        "name": "Debourg",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikipedia": "fr:Debourg (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8334989,
+          45.7310686
+        ]
+      },
+      "id": "node/5365142247"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365143994",
+        "name": "Place Jean Jaurès",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikipedia": "fr:Station Place Jean Jaurès"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8372862,
+          45.7376127
+        ]
+      },
+      "id": "node/5365143994"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365146848",
+        "name": "Gare d'Oullins",
+        "network": "TCL",
+        "operator": "Keolis Lyon",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q5854748",
+        "wikipedia": "fr:Gare d'Oullins (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.814489,
+          45.7166889
+        ]
+      },
+      "id": "node/5365146848"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365148732",
+        "name": "Bellecour",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikipedia": "fr:Bellecour (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8330089,
+          45.7573623
+        ]
+      },
+      "id": "node/5365148732"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365152101",
+        "funicular": "yes",
+        "name": "Vieux Lyon - Cathédrale Saint-Jean",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2418969",
+        "wikipedia": "fr:Vieux Lyon - Cathédrale Saint-Jean (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8259866,
+          45.760038
+        ]
+      },
+      "id": "node/5365152101"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365154886",
+        "name": "Vaulx-en-Velin - La Soie",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikipedia": "fr:Station Vaulx-en-Velin - La Soie"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9219027,
+          45.7611805
+        ]
+      },
+      "id": "node/5365154886"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365157959",
+        "name": "Hôtel de Ville - Louis Pradel",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q613893",
+        "wikipedia": "fr:Hôtel de Ville - Louis Pradel (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8360239,
+          45.7678584
+        ]
+      },
+      "id": "node/5365157959"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365164472",
+        "name": "Charpennes - Charles Hernu (Ligne B)",
+        "network": "TCL",
+        "operator": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikipedia": "fr:Charpennes - Charles Hernu (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8631473,
+          45.7703153
+        ]
+      },
+      "id": "node/5365164472"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365165135",
+        "name": "Stade de Gerland",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q1847502",
+        "wikipedia": "fr:Station Stade de Gerland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8309648,
+          45.726717
+        ]
+      },
+      "id": "node/5365165135"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365180176",
+        "name": "Gorge de Loup",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8054096,
+          45.7663848
+        ]
+      },
+      "id": "node/5365180176"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365180454",
+        "name": "Monplaisir - Lumière",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2411706",
+        "wikipedia": "fr:Monplaisir - Lumière (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8714378,
+          45.745537
+        ]
+      },
+      "id": "node/5365180454"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5365589507",
+        "name": "Masséna",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q3497340",
+        "wikipedia": "fr:Masséna (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8533062,
+          45.769619
+        ]
+      },
+      "id": "node/5365589507"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5380086325",
+        "name": "Valmy",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3497362",
+        "wikipedia": "fr:Valmy (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8054273,
+          45.7746618
+        ]
+      },
+      "id": "node/5380086325"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5380090834",
+        "name": "Guillotière",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8427986,
+          45.755348
+        ]
+      },
+      "id": "node/5380090834"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5380092139",
+        "name": "Saxe - Gambetta",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8470262,
+          45.7539415
+        ]
+      },
+      "id": "node/5380092139"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385006337",
+        "name": "Perrache",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8267918,
+          45.7496883
+        ]
+      },
+      "id": "node/5385006337"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385022793",
+        "name": "Laennec",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2387420"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8865961,
+          45.7384327
+        ]
+      },
+      "id": "node/5385022793"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385023672",
+        "name": "Gare de Vaise",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2085825",
+        "wikipedia": "fr:Gare de Vaise (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8045487,
+          45.7806026
+        ]
+      },
+      "id": "node/5385023672"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385025147",
+        "name": "Garibaldi",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q2525806"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8534494,
+          45.7517214
+        ]
+      },
+      "id": "node/5385025147"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385025382",
+        "name": "Grange Blanche",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3497335"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8787162,
+          45.7429728
+        ]
+      },
+      "id": "node/5385025382"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385025439",
+        "name": "Sans Souci",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3497355"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8650992,
+          45.7475565
+        ]
+      },
+      "id": "node/5385025439"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385026358",
+        "name": "Mermoz - Pinel",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8872276,
+          45.7306677
+        ]
+      },
+      "id": "node/5385026358"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385027363",
+        "name": "Parilly",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8874534,
+          45.7194872
+        ]
+      },
+      "id": "node/5385027363"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385029707",
+        "name": "Brotteaux",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8594397,
+          45.7671656
+        ]
+      },
+      "id": "node/5385029707"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385032105",
+        "name": "Gare Part-Dieu - Vivier Merle",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8572201,
+          45.7615455
+        ]
+      },
+      "id": "node/5385032105"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385036748",
+        "name": "Ampère - Victor Hugo",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8290725,
+          45.752994
+        ]
+      },
+      "id": "node/5385036748"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385037483",
+        "name": "Foch",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3497333"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8443036,
+          45.7687864
+        ]
+      },
+      "id": "node/5385037483"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385037619",
+        "name": "République - Villeurbanne",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8740276,
+          45.770531
+        ]
+      },
+      "id": "node/5385037619"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385037695",
+        "name": "Gratte-Ciel",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8822115,
+          45.7691133
+        ]
+      },
+      "id": "node/5385037695"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385037696",
+        "name": "Flachet - Alain Gilles",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikipedia": "fr:Flachet - Alain Gilles (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8893766,
+          45.7677765
+        ]
+      },
+      "id": "node/5385037696"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385037838",
+        "name": "Cusset",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.9007729,
+          45.7656864
+        ]
+      },
+      "id": "node/5385037838"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385038134",
+        "name": "Laurent Bonnevay - Astroballe",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.908879,
+          45.7641733
+        ]
+      },
+      "id": "node/5385038134"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5385052292",
+        "name": "Jean Macé",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikidata": "Q2059990",
+        "wikipedia": "fr:Jean Macé (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8423494,
+          45.7459301
+        ]
+      },
+      "id": "node/5385052292"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5387297446",
+        "name": "Croix-Paquet",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes",
+        "wikipedia": "fr:Croix-Paquet (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8361033,
+          45.7710247
+        ]
+      },
+      "id": "node/5387297446"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5388249130",
+        "name": "Croix-Rousse",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8319317,
+          45.7744574
+        ]
+      },
+      "id": "node/5388249130"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5388264922",
+        "name": "Hénon",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8275865,
+          45.7794467
+        ]
+      },
+      "id": "node/5388264922"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5388270721",
+        "name": "Cuire",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8325604,
+          45.7852844
+        ]
+      },
+      "id": "node/5388270721"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5390305237",
+        "name": "Vénissieux",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "uic_ref": "8772332"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8879251,
+          45.7055532
+        ]
+      },
+      "id": "node/5390305237"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5509480923",
+        "name": "Minimes - Théâtres romains",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3497346",
+        "wikipedia": "fr:Minimes - Théâtres Romains (funiculaire de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8213322,
+          45.7586387
+        ]
+      },
+      "id": "node/5509480923"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5821110979",
+        "name": "Saint-Just",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3497352",
+        "wikipedia": "fr:Saint-Just (funiculaire de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8162851,
+          45.7571457
+        ]
+      },
+      "id": "node/5821110979"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5821110983",
+        "name": "Fourvière",
+        "network": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikidata": "Q3497329",
+        "wikipedia": "fr:Fourvière (funiculaire de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8214507,
+          45.762381
+        ]
+      },
+      "id": "node/5821110983"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6022264659",
+        "name": "Charpennes - Charles Hernu (Ligne A)",
+        "network": "TCL",
+        "operator": "TCL",
+        "public_transport": "station",
+        "railway": "station",
+        "station": "subway",
+        "subway": "yes",
+        "wikipedia": "fr:Charpennes - Charles Hernu (métro de Lyon)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.8645897,
+          45.7706204
+        ]
+      },
+      "id": "node/6022264659"
+    }
+  ]
+}
