@@ -11,21 +11,47 @@
     android:background="@drawable/layout_bg"
     app:layout_constraintCircleRadius="50dp">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/map_profile_picture"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/default_avatar"
+        app:civ_border_color="@color/quantum_white_100"
+        app:civ_border_width="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/feed_profile_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text="Anon"
+        android:textColor="#363636"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/map_profile_picture"
+        app:layout_constraintTop_toTopOf="@+id/map_profile_picture" />
+
     <TextView
         android:id="@+id/feed_element_station_name"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
+        android:layout_marginLeft="7dp"
         android:padding="2dp"
         android:text="Station"
         android:textAllCaps="true"
         android:textColor="#111"
-        android:textSize="29dp"
+        android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintStart_toEndOf="@+id/map_profile_picture"
+        app:layout_constraintTop_toBottomOf="@+id/feed_profile_name"
         app:layout_constraintVertical_bias="0.0" />
 
     <!--    <TextView-->
@@ -47,21 +73,17 @@
 
     <TextView
         android:id="@+id/feed_element_timestamp"
-        android:layout_width="405dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:gravity="end"
-        android:paddingRight="7dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingRight="10dp"
         android:text="timestamp"
-        android:textAlignment="textEnd"
         android:textColor="#000000"
         android:textSize="14dp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feed_element_station_name"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/feed_element_station_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,24 @@ public class Feed {
     private boolean safe;
     private Timestamp timestamp;
     private String userId;
+    private String userName;
+    private String profilPicUri;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getProfilPicUri() {
+        return profilPicUri;
+    }
+
+    public void setProfilPicUri(String profilPicUri) {
+        this.profilPicUri = profilPicUri;
+    }
 
 
     public void setUserId(String userId) {
@@ -21,12 +39,14 @@ public class Feed {
         //needed for firestore
     }
 
-    public Feed(String station, boolean stationVote, Timestamp timestamp, String userId) {
+    public Feed(String station, boolean stationVote, Timestamp timestamp, String userId, String userName, String profilePicUri) {
 
         this.safe = stationVote;
         this.timestamp = timestamp;
         this.station = station;
         this.userId = userId;
+        this.profilPicUri = profilePicUri;
+        this.userName = userName;
     }
 
 

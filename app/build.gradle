@@ -22,8 +22,8 @@ android {
         applicationId "com.alainsaris.thisisit"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.1.01"
+        versionCode 10
+        versionName "1.1.06"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         //multidex
         multiDexEnabled true
@@ -78,5 +78,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     //multidex
     implementation 'com.android.support:multidex:1.0.3'
+    // picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

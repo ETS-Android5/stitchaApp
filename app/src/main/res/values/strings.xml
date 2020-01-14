@@ -40,7 +40,8 @@
 
     <string name="facebook_app_id">608255636381899</string>
     <string name="fb_login_protocol_scheme">fb608255636381899</string>
-    <string name="admob_banner_ad">ca-app-pub-8514985141707501/9176374996</string>
+    <!-- actual banner number: ca-app-pub-8514985141707501/9176374996-->
+    <string name="admob_banner_ad">ca-app-pub-8514985141707501/0000000000</string>
     <string name="admob_interstitial_ad">ca-app-pub-8514985141707501/9609326125</string>
     <string name="privay_policy_text">TextView</string>
     <string name="rewarded_ad_id">ca-app-pub-8514985141707501/5720752231</string>

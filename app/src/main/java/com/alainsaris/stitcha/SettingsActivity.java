@@ -34,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         //ui
-        mDisplayImage = findViewById(R.id.profile_image);
+        mDisplayImage = findViewById(R.id.profile_image_settings);
         mStatus = findViewById(R.id.settings_status);
         mDisplayName = findViewById(R.id.settings_display_name);
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.squareup.picasso.Picasso;
 
 public class FeedActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -28,6 +30,7 @@ public class FeedActivity extends AppCompatActivity {
     private String userId;
     private String station;
     private CollectionReference feedRef;
+    private ImageView profilePicture;
 
     private boolean currentVote;
 
@@ -86,18 +89,32 @@ public class FeedActivity extends AppCompatActivity {
                 // Bind the Chat object to the ChatHolder
                 // ...
                 TextView stationName = holder.stationNameTextView;
+                TextView userName = holder.usernameTextView;
+                profilePicture = holder.profilePictureImageView;
                 stationName.setText(model.getStation());
+                if (model.getProfilPicUri() == null) {
+                    Picasso.get().load(R.drawable.default_avatar).into(profilePicture);
+                } else if (model.getProfilPicUri() != "") {
+                    Picasso.get().load(model.getProfilPicUri()).into(profilePicture);
+                }
+                if (model.getUserName() == null) {
+                    userName.setText("anon");
+                } else {
+                    userName.setText(model.getUserName());
+                }
 //                TextView stationVote = holder.stationVoteTextView;
 //                stationVote.setText(model.getSafe());
 //                stationVote.setVisibility(View.GONE);
 
                 currentVote = model.getSafeBool();
 
-                if (currentVote) {
-                    holder.constraintLayout.setBackgroundColor(Color.parseColor("#4CA64C"));
-                } else {
-                    holder.constraintLayout.setBackgroundColor(Color.parseColor("#ff4c4c"));
-                }
+                //to change bg color
+                //old
+//                if (currentVote) {
+//                    holder.constraintLayout.setBackgroundColor(Color.parseColor("#4CA64C"));
+//                } else {
+//                    holder.constraintLayout.setBackgroundColor(Color.parseColor("#ff4c4c"));
+//                }
 
                 holder.constraintLayout.setClipToPadding(true);
 

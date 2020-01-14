@@ -30,6 +30,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -39,12 +41,20 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.SetOptions;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class StartActivity<mCallbackManager> extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth mAuth;
@@ -57,6 +67,9 @@ public class StartActivity<mCallbackManager> extends AppCompatActivity implement
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     private ProgressBar progressBar;
+
+    //firebase
+    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +114,8 @@ public class StartActivity<mCallbackManager> extends AppCompatActivity implement
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
+                .requestProfile()
+//                .setAccountName("Anon")
                 .build();
         // [END config_signin]
         // Build a GoogleSignInClient with the options specified by gso.
@@ -139,22 +154,16 @@ public class StartActivity<mCallbackManager> extends AppCompatActivity implement
     protected void onStart() {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (currentUser != null) {
-//            Toast.makeText(this, "current user != null", Toast.LENGTH_SHORT).show();
+        currentUser = mAuth.getCurrentUser();
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {
             //if the user is already signed in just send him to MapAcitivty
             sendToMain();
         }
-//        if (account != null) {
-////            Toast.makeText(this, "current user != null", Toast.LENGTH_SHORT).show();
-//            sendToMain();
-//        }
-
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-//        updateUI(account);
-
     }
 
     //google sign in
@@ -193,6 +202,33 @@ public class StartActivity<mCallbackManager> extends AppCompatActivity implement
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        finalLoginStep(credential);
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithCredential:success");
+//                            //send the user to the main acitivity(MapActivity)
+//                            currentUser = mAuth.getCurrentUser();
+//                            updateUI(currentUser);
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            Toast.makeText(StartActivity.this, "Authentication failed:" + task.getException(),
+//                                    Toast.LENGTH_SHORT).show();
+//                            progressBar.setVisibility(ProgressBar.GONE);
+//                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+////                            updateUI(null);
+//                        }
+//
+//                        // ...
+//                    }
+//                });
+    }
+
+    private void finalLoginStep(AuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -200,27 +236,74 @@ public class StartActivity<mCallbackManager> extends AppCompatActivity implement
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            //send the user to the main acitivity(MapActivity)
-                            sendToMain();
-//                            updateUI(user);
+//                            final FirebaseUser user = mAuth.getCurrentUser();
+                            currentUser = mAuth.getCurrentUser();
+//                            Toast.makeText(StartActivity.this, "got the current user dara: " + user, Toast.LENGTH_SHORT).show();
+//                            sendToMain();
+                            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            Map<String, Object> userMap = new HashMap<>();
+//                            userMap.put("current location", new GeoPoint(0, 0));
+                            userMap.put("email", currentUser.getEmail());
+                            userMap.put("id", currentUser.getUid());
+                            Log.d(TAG, "onComplete: finalLoginStep: " + currentUser.getUid());
+                            Log.d(TAG, "onComplete: finalLoginStep:  " + mAuth.getCurrentUser().getUid());
+                            userMap.put("last logged in", FieldValue.serverTimestamp());
+                            userMap.put("logged in", true);
+                            userMap.put("name", currentUser.getDisplayName());
+                            userMap.put("phone number", "0000000000");
+//                            userMap.put("points", 9001);
+//                            userMap.put("profie pic", currentUser.getPhotoUrl());
+                            db.collection("users").document(mAuth.getUid()).set(userMap, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Map<String, Object> userSettingsMap = new HashMap<>();
+                                    userSettingsMap.put("show profile pic", true);
+                                    userSettingsMap.put("show name", true);
+                                    userSettingsMap.put("profile public", true);
+                                    userSettingsMap.put("share position", false);
+                                    db.collection("users").document(mAuth.getUid()).collection("settings").document("settings")
+                                            .set(userSettingsMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            updateUI(currentUser);
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(StartActivity.this, "couldn' write userSettings: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            loadingEnd();
+                                            updateUI(null);
+                                        }
+                                    });
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(StartActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    mAuth.signOut();
+                                    loadingEnd();
+                                    updateUI(null);
+                                }
+                            });
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(StartActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(ProgressBar.GONE);
-                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-//                            updateUI(null);
+                            Toast.makeText(StartActivity.this, "failed to login: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            loadingEnd();
+//                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+                            updateUI(null);
                         }
 
-                        // ...
+                        // [START_EXCLUDE]
+//                        hideProgressDialog();
+                        // [END_EXCLUDE]
                     }
                 });
     }
 
+    //send to the MapActivity
     private void sendToMain() {
-//        FirebaseUser user = mAuth.getCurrentUser();
-//        Toast.makeText(this, "sending to main!", Toast.LENGTH_SHORT).show();
         Intent mainIntent = new Intent(StartActivity.this, MapActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
@@ -260,6 +343,7 @@ public class StartActivity<mCallbackManager> extends AppCompatActivity implement
         loadingStart();
     }
 
+    //show a loading progress bar and stop user interactivity
     private void loadingStart() {
         //ProgressBar Stuff
         progressBar.setVisibility(ProgressBar.VISIBLE);
@@ -268,6 +352,7 @@ public class StartActivity<mCallbackManager> extends AppCompatActivity implement
         //progressBar stuff end
     }
 
+    //hide loading progress bar and restore user interactivity
     private void loadingEnd() {
         progressBar.setVisibility(ProgressBar.GONE);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
@@ -281,32 +366,75 @@ public class StartActivity<mCallbackManager> extends AppCompatActivity implement
         // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-//                            Toast.makeText(StartActivity.this, "got the current user dara: " + user, Toast.LENGTH_SHORT).show();
-                            sendToMain();
-//                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            loadingEnd();
-//                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
+        finalLoginStep(credential);
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithCredential:success");
+////                            final FirebaseUser user = mAuth.getCurrentUser();
+//                            currentUser = mAuth.getCurrentUser();
+////                            Toast.makeText(StartActivity.this, "got the current user dara: " + user, Toast.LENGTH_SHORT).show();
+////                            sendToMain();
+//                            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+//                            Map<String, Object> userMap = new HashMap<>();
+////                            userMap.put("current location", new GeoPoint(0, 0));
+//                            userMap.put("email", currentUser.getEmail());
+//                            userMap.put("id", currentUser.getUid());
+//                            userMap.put("last logged in", FieldValue.serverTimestamp());
+//                            userMap.put("logged in", true);
+//                            userMap.put("name", currentUser.getDisplayName());
+//                            userMap.put("phone number", "0000000000");
+////                            userMap.put("points", 9001);
+////                            userMap.put("profie pic", currentUser.getPhotoUrl());
+//                            db.collection("users").document(mAuth.getUid()).set(userMap, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                @Override
+//                                public void onSuccess(Void aVoid) {
+//                                    Map<String, Object> userSettingsMap = new HashMap<>();
+//                                    userSettingsMap.put("show profile pic", true);
+//                                    userSettingsMap.put("show name", true);
+//                                    userSettingsMap.put("profile public", true);
+//                                    userSettingsMap.put("share position", false);
+//                                    db.collection("users").document(mAuth.getUid()).collection("settings").document("settings")
+//                                            .set(userSettingsMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                        @Override
+//                                        public void onSuccess(Void aVoid) {
+//                                            updateUI(currentUser);
+//                                        }
+//                                    }).addOnFailureListener(new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception e) {
+//                                            Toast.makeText(StartActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    });
+//
+//                                }
+//                            }).addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception e) {
+//                                    Toast.makeText(StartActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    mAuth.signOut();
+//                                }
+//                            });
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            loadingEnd();
+////                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
 //                            updateUI(null);
-                        }
-
-                        // [START_EXCLUDE]
-//                        hideProgressDialog();
-                        // [END_EXCLUDE]
-                    }
-                });
+//                        }
+//
+//                        // [START_EXCLUDE]
+////                        hideProgressDialog();
+//                        // [END_EXCLUDE]
+//                    }
+//                });
     }
 
+    //this is not really necessary because the launch activity is the MapActivity which will ask for permissions everytime
+    //we still want to let the user sign up or login even without him giving us the location permission
     public void requestPermissionsWithDexter() {
         Dexter.withActivity(this)
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
