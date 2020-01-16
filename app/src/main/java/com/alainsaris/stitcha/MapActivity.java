@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -219,6 +220,12 @@ public class MapActivity extends AppCompatActivity implements
         Log.d(TAG, "onCreate: called!");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        ///make status bar transparent
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        );
 
         requestPermissionsWithDexter();
         mapStyleDark = true;
@@ -703,7 +710,7 @@ public class MapActivity extends AppCompatActivity implements
 
                         if (selectedStation != null) {
                             db.collection("/cities/" + currentCity + "/" + currentCity + " feed")
-                                    .document(currentuser + selectedStation)
+                                    .document(currentuser + "_" + selectedStation)
                                     .set(vote)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -819,7 +826,7 @@ public class MapActivity extends AppCompatActivity implements
                         vote.put("userId", currentuser);
                         if (selectedStation != null) {
                             db.collection("/cities/" + currentCity + "/" + currentCity + " feed")
-                                    .document(currentuser + selectedStation)
+                                    .document(currentuser + "_" + selectedStation)
                                     .delete()
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -1413,7 +1420,7 @@ public class MapActivity extends AppCompatActivity implements
             // position on right bottom
             rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
             rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-            rlp.setMargins(0, 220, 180, 0);
+            rlp.setMargins(0, 330, 180, 0);
             mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapActivity.this));
             // Turn on the My Location layer and the related control on the map.
         } else {
@@ -1751,12 +1758,14 @@ public class MapActivity extends AppCompatActivity implements
             if (checkPermissions()) {
                 Log.d(TAG, "updateLocationUI: checkPermissions = true");
                 mMap.setMyLocationEnabled(true);
+                mMap.getUiSettings().setCompassEnabled(false);
                 mMap.getUiSettings().setMyLocationButtonEnabled(true);
                 getDeviceLocation();
             } else {
                 requestPermissionsWithDexter();
                 Log.d(TAG, "updateLocationUI: checkPermissions = false");
                 mMap.setMyLocationEnabled(false);
+                mMap.getUiSettings().setCompassEnabled(false);
                 mMap.getUiSettings().setMyLocationButtonEnabled(false);
                 mLastKnownLocation = null;
 //                requestPermissions();

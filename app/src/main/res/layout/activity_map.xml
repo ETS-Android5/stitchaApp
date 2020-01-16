@@ -26,6 +26,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".MapActivity" />
 
+
     <include
         android:id="@+id/map_toolbar"
         layout="@layout/app_bar_layout"
@@ -35,10 +36,10 @@
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toEndOf="@+id/map_profile_picture"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.063" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -152,20 +153,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/map_toolbar" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/feed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:elevation="3dp"
-        app:layout_constraintBottom_toBottomOf="@+id/map_mapFragment"
-        app:layout_constraintEnd_toEndOf="@+id/map_toolbar"
-        app:layout_constraintHorizontal_bias="0.952"
-        app:layout_constraintStart_toStartOf="@+id/map_toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/adView"
-        app:layout_constraintVertical_bias="0.88"
-        app:srcCompat="@drawable/logo" />
-
     <Button
         android:id="@+id/map_unsafe_btn"
         android:layout_width="51dp"
@@ -181,6 +168,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView_unsafe"
         app:layout_constraintTop_toTopOf="@+id/textView_unsafe" />
+
 
     <TextView
         android:id="@+id/textView_unsafe"
@@ -200,18 +188,31 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintVertical_bias="0.913" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/feed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/map_chat_btn"
+        app:layout_constraintEnd_toEndOf="@+id/map_toolbar"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toEndOf="@+id/map_unsafe_btn"
+        app:layout_constraintTop_toBottomOf="@+id/adView"
+        app:layout_constraintVertical_bias="0.946"
+        app:srcCompat="@drawable/logo" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/map_profile_picture"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
         android:src="@drawable/default_avatar"
         app:civ_border_color="@color/quantum_white_100"
         app:civ_border_width="3dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/map_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
