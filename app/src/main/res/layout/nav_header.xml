@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@color/colorAccent"
+    android:background="#D6493F"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/navigationDrawer_profile_imageView"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:src="@drawable/default_avatar" />
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:src="@drawable/default_avatar"
+        app:civ_border_color="@color/quantum_white_100"
+        app:civ_border_width="3dp" />
 
     <TextView
         android:id="@+id/navigationDrawer_username_textView"

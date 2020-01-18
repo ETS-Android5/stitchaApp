@@ -1,6 +1,7 @@
 package com.alainsaris.stitcha;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.app.PendingIntent;
@@ -16,6 +17,7 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +34,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.facebook.login.LoginManager;
 import com.firebase.geofire.GeoFire;
@@ -75,6 +79,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -119,11 +124,13 @@ import static java.lang.Math.pow;
 public class MapActivity extends AppCompatActivity implements
         OnMapReadyCallback,
         OnCompleteListener<Void>,
-        GoogleMap.OnMarkerClickListener {
+        GoogleMap.OnMarkerClickListener, NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "MAP_ACTIVITY";
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     private static Application sApplication;
     boolean rewardedAdShown = false;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     //admob
     private InterstitialAd mInterstitialAd;
@@ -201,6 +208,28 @@ public class MapActivity extends AppCompatActivity implements
     private RewardedAd rewardedAd;
     private boolean mapStyleDark;
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.nav_profile:
+                Intent intentToProfile = new Intent(MapActivity.this, SettingsActivity2.class   );
+                startActivity(intentToProfile);
+                break;
+            case R.id.nav_settings:
+                Intent intentToSettings = new Intent(MapActivity.this, SettingsActivity.class);
+                startActivity(intentToSettings);
+                break;
+            case R.id.nav_about:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+                break;
+            case R.id.nav_rate:
+                Toast.makeText(MapActivity.this, "5 stars plz XD", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     /**
      * Tracks whether the user requested to add or remove geofences, or to do neither.
      */
@@ -213,6 +242,15 @@ public class MapActivity extends AppCompatActivity implements
     //firebase admin
     private HashMap<String, Object> stationsNames;
     private FirebaseUser currentUser;
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -293,6 +331,8 @@ public class MapActivity extends AppCompatActivity implements
         rewardedAd = new RewardedAd(this,
                 getString(R.string.rewarded_ad_id));
         rewardedAd = createAndLoadRewardedAd();
+        navigationView = findViewById(R.id.drawer);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
         currentCity = "lyon";
@@ -335,6 +375,7 @@ public class MapActivity extends AppCompatActivity implements
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_mapFragment);
         mapFragment.getMapAsync(this);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
 //        mBtnSafe = findViewById(R.id.map_safe_btn);
         mBtnUnsafe = findViewById(R.id.map_unsafe_btn);
@@ -349,9 +390,13 @@ public class MapActivity extends AppCompatActivity implements
         disableButtons();
 
         profilePic.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
             @Override
             public void onClick(View view) {
 //                Toast.makeText(MapActivity.this, "should open navigation drawer ;)", Toast.LENGTH_SHORT).show();
+                if (!drawerLayout.isDrawerOpen(GravityCompat.START))
+                    drawerLayout.openDrawer(Gravity.START);
+                else drawerLayout.closeDrawer(Gravity.END);
             }
         });
 

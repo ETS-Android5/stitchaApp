@@ -1,218 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MapActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="96dp" />
-
-    <fragment
-        android:id="@+id/map_mapFragment"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:cameraZoom="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".MapActivity" />
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/map_mapFragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:cameraZoom="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".MapActivity" />
 
 
-    <include
-        android:id="@+id/map_toolbar"
-        layout="@layout/app_bar_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10sp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toEndOf="@+id/map_profile_picture"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063" />
+        <include
+            android:id="@+id/map_toolbar"
+            layout="@layout/app_bar_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toEndOf="@+id/map_profile_picture"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.063" />
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="10sp"
+            android:layout_marginVertical="10sp"
+            android:elevation="3dp"
+            android:minWidth="0dp"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="@string/admob_banner_ad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/map_toolbar"></com.google.android.gms.ads.AdView>
+
+        <com.google.android.gms.ads.formats.UnifiedNativeAdView
+            android:id="@+id/unifiedNativeAdView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.gms.ads.formats.UnifiedNativeAdView>
+
+
+        <!--<Spinner-->
+        <!--android:id="@+id/spinner"-->
+        <!--android:layout_width="395dp"-->
+        <!--android:layout_height="37dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/map_toolbar"-->
+        <!--app:layout_constraintVertical_weight="1" />-->
+
+        <Button
+            android:id="@+id/map_chat_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chat"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/map_mapFragment"
+            app:layout_constraintEnd_toStartOf="@+id/map_mapFragment"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toEndOf="@+id/map_mapFragment"
+            app:layout_constraintTop_toBottomOf="@+id/map_mapFragment"
+            app:layout_constraintVertical_bias="0.107" />
+
+        <TextView
+            android:id="@+id/map_current_geostate"
+            android:layout_width="372dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="current geo state"
+            android:textColor="@color/quantum_black_100"
+            android:textSize="0sp"
+            app:layout_constraintBottom_toTopOf="@+id/map_mapFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.521"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/map_toolbar"
+            tools:visibility="gone" />
+
+        <Button
+            android:id="@+id/add_geo_fences_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="add geofences"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/map_chat_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/map_toolbar"
+            app:layout_constraintVertical_bias="0.22" />
+
+        <TextView
+            android:id="@+id/map_station_name_textview"
+            android:layout_width="372dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="nom du station"
+            android:textColor="@color/quantum_black_100"
+            android:textSize="25sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/map_mapFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/map_toolbar" />
+
+        <Button
+            android:id="@+id/map_unsafe_btn"
+            android:layout_width="51dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_round"
+            android:text="+"
+            android:textColor="@color/quantum_white_100"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:theme="@style/AppTheme.ButtonUnsafe"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_unsafe"
+            app:layout_constraintEnd_toEndOf="@+id/textView_unsafe"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/textView_unsafe"
+            app:layout_constraintTop_toTopOf="@+id/textView_unsafe" />
+
+
+        <TextView
+            android:id="@+id/textView_unsafe"
+            android:layout_width="154dp"
+            android:layout_height="32dp"
+            android:layout_marginVertical="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edit_round"
+            android:gravity="center"
+            android:paddingRight="32dp"
+            android:text="55"
+            android:textColor="@color/quantum_white_100"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/map_mapFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.913" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/feed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:elevation="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/map_chat_btn"
+            app:layout_constraintEnd_toEndOf="@+id/map_toolbar"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toEndOf="@+id/map_unsafe_btn"
+            app:layout_constraintTop_toBottomOf="@+id/adView"
+            app:layout_constraintVertical_bias="0.946"
+            app:srcCompat="@drawable/logo" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/map_profile_picture"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/default_avatar"
+            app:civ_border_color="@color/quantum_white_100"
+            app:civ_border_width="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/map_toolbar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/drawer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="10sp"
-        android:layout_marginVertical="10sp"
-        android:elevation="3dp"
-        android:minWidth="0dp"
-        app:adSize="SMART_BANNER"
-        app:adUnitId="@string/admob_banner_ad"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map_toolbar"></com.google.android.gms.ads.AdView>
-
-    <com.google.android.gms.ads.formats.UnifiedNativeAdView
-        android:id="@+id/unifiedNativeAdView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </com.google.android.gms.ads.formats.UnifiedNativeAdView>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
 
 
-    <!--<Spinner-->
-    <!--android:id="@+id/spinner"-->
-    <!--android:layout_width="395dp"-->
-    <!--android:layout_height="37dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginLeft="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginRight="8dp"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toBottomOf="@+id/map_toolbar"-->
-    <!--app:layout_constraintVertical_weight="1" />-->
-
-    <Button
-        android:id="@+id/map_chat_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="chat"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/map_mapFragment"
-        app:layout_constraintEnd_toStartOf="@+id/map_mapFragment"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toEndOf="@+id/map_mapFragment"
-        app:layout_constraintTop_toBottomOf="@+id/map_mapFragment"
-        app:layout_constraintVertical_bias="0.107" />
-
-    <TextView
-        android:id="@+id/map_current_geostate"
-        android:layout_width="372dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="current geo state"
-        android:textColor="@color/quantum_black_100"
-        android:textSize="0sp"
-        app:layout_constraintBottom_toTopOf="@+id/map_mapFragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map_toolbar"
-        tools:visibility="gone" />
-
-    <Button
-        android:id="@+id/add_geo_fences_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="add geofences"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/map_chat_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map_toolbar"
-        app:layout_constraintVertical_bias="0.22" />
-
-    <TextView
-        android:id="@+id/map_station_name_textview"
-        android:layout_width="372dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="nom du station"
-        android:textColor="@color/quantum_black_100"
-        android:textSize="25sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/map_mapFragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map_toolbar" />
-
-    <Button
-        android:id="@+id/map_unsafe_btn"
-        android:layout_width="51dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_round"
-        android:text="+"
-        android:textColor="@color/quantum_white_100"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:theme="@style/AppTheme.ButtonUnsafe"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_unsafe"
-        app:layout_constraintEnd_toEndOf="@+id/textView_unsafe"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView_unsafe"
-        app:layout_constraintTop_toTopOf="@+id/textView_unsafe" />
-
-
-    <TextView
-        android:id="@+id/textView_unsafe"
-        android:layout_width="154dp"
-        android:layout_height="32dp"
-        android:layout_marginVertical="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/edit_round"
-        android:gravity="center"
-        android:paddingRight="32dp"
-        android:text="55"
-        android:textColor="@color/quantum_white_100"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/map_mapFragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.913" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/feed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:elevation="3dp"
-        app:layout_constraintBottom_toBottomOf="@+id/map_chat_btn"
-        app:layout_constraintEnd_toEndOf="@+id/map_toolbar"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toEndOf="@+id/map_unsafe_btn"
-        app:layout_constraintTop_toBottomOf="@+id/adView"
-        app:layout_constraintVertical_bias="0.946"
-        app:srcCompat="@drawable/logo" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/map_profile_picture"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/default_avatar"
-        app:civ_border_color="@color/quantum_white_100"
-        app:civ_border_width="3dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/map_toolbar" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

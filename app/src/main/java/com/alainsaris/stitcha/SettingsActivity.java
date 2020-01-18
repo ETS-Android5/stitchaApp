@@ -47,13 +47,13 @@ public class SettingsActivity extends AppCompatActivity {
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("name").getValue().toString();
-                String image = dataSnapshot.child("image").getValue().toString();
-                String status = dataSnapshot.child("status").getValue().toString();
-                String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
+//                String name = dataSnapshot.child("name").getValue().toString();
+//                String image = dataSnapshot.child("image").getValue().toString();
+//                String status = dataSnapshot.child("status").getValue().toString();
+//                String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
-                mDisplayName.setText(name);
-                mStatus.setText(status);
+//                mDisplayName.setText(name);
+//                mStatus.setText(status);
 
             }
 
