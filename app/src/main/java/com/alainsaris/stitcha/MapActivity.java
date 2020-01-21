@@ -5,9 +5,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.net.Uri;
@@ -16,14 +19,17 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +73,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
@@ -119,12 +127,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static java.lang.Math.pow;
+import static java.lang.Math.round;
 
 public class MapActivity extends AppCompatActivity implements
         OnMapReadyCallback,
         OnCompleteListener<Void>,
-        GoogleMap.OnMarkerClickListener, NavigationView.OnNavigationItemSelectedListener {
+        GoogleMap.OnMarkerClickListener, NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private static final String TAG = "MAP_ACTIVITY";
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     private static Application sApplication;
@@ -174,6 +185,8 @@ public class MapActivity extends AppCompatActivity implements
     private String currentStation;
     private String currentCity;
 
+    // button
+    private ImageView addMarkerBtn;
 
     // The geographical location where the device is currently located. That is, the last-known
     // location retrieved by the Fused Location Provider.
@@ -212,7 +225,7 @@ public class MapActivity extends AppCompatActivity implements
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_profile:
-                Intent intentToProfile = new Intent(MapActivity.this, SettingsActivity2.class   );
+                Intent intentToProfile = new Intent(MapActivity.this, SettingsActivity2.class);
                 startActivity(intentToProfile);
                 break;
             case R.id.nav_settings:
@@ -229,6 +242,68 @@ public class MapActivity extends AppCompatActivity implements
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.map_marker_btn:
+//                Toast.makeText(this, "popup", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MapActivity.this, MarkerChooserPopup.class);
+                startActivityForResult(intent, 1);
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra("result");
+                Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+                addMarker(result);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
+
+    private void addMarker(String result) {
+        int drawableId = R.drawable.markers_fire_marker;
+        String message = "alert!";
+        switch (result) {
+            case "policeMarker":
+                drawableId = R.drawable.markers_police_marker;
+                message = "Police!";
+                break;
+            case "ticketsMarker":
+                drawableId = R.drawable.markers_ticket_marker;
+                message = "Tickets!";
+                break;
+            case "fireMarker":
+                drawableId = R.drawable.markers_fire_marker;
+                message = "Fire!!!";
+                break;
+            case "protestMarker":
+                drawableId = R.drawable.markers_protests_marker;
+                message = "Protests!";
+                break;
+        }
+
+
+        int height = 100;
+        int width = 100;
+        Bitmap b = BitmapFactory.decodeResource(getResources(), drawableId);
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+        BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromBitmap(smallMarker);
+        LatLng markerPosition = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+        MarkerOptions markerOptions = new MarkerOptions().position(markerPosition)
+                .title(message)
+                .icon(markerIcon);
+        mMap.addMarker(markerOptions);
+    }
+
 
     /**
      * Tracks whether the user requested to add or remove geofences, or to do neither.
@@ -276,6 +351,7 @@ public class MapActivity extends AppCompatActivity implements
         // user settings
 //        userSettingsMap.put("profile pic", true);
         userSettingsMap.put("share position", false);
+        userSettingsMap.put("get position", true);
         userSettingsMap.put("show name", true);
         userSettingsMap.put("show profile pic", true);
         getUserSettings();
@@ -301,6 +377,9 @@ public class MapActivity extends AppCompatActivity implements
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.admob_interstitial_ad));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        addMarkerBtn = findViewById(R.id.map_marker_btn);
+        addMarkerBtn.setOnClickListener(this);
 
         //native ad
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -1578,6 +1657,14 @@ public class MapActivity extends AppCompatActivity implements
 ////                    });
 ////        }
 
+        /**
+         * TODO: I DON'T EVEN KNOW WHAT TEH FUCK AM I DOING RIGHT NOW BROOOOOO!!!
+         * THIS IS A FUCKING TEST
+         * I'M GOING TO DISABLE ALL THE MARKERS NOW
+         * AND I WILL ONLY USE THE MARKERS GIVEN BY THE USERS
+         * THIS SHOULD BE BETTER I THINK
+         */
+
         String stationName = "station name";
         String line = "";
         Double latitude = 0.0;
@@ -1959,56 +2046,71 @@ public class MapActivity extends AppCompatActivity implements
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
+//                Toast.makeText(MapActivity.this, "locationResult got!!", Toast.LENGTH_SHORT).show();
                 if (mMap != null) {
-
                     lastLocation = locationResult.getLastLocation();
-                    mAuth = FirebaseAuth.getInstance();
+                    double latitude = lastLocation.getLatitude();
+                    double longitude = lastLocation.getLongitude();
                     currentUser = mAuth.getCurrentUser();
-//                    Toast.makeText(MapActivity.this, "current use is: " + currentuser, Toast.LENGTH_SHORT).show();
                     if (currentUser == null) {
                         Log.d(TAG, "onLocationResult: sending to start because currentUser object == null");
-//                        Toast.makeText(MapActivity.this, "sending to star because you're not logged in, buildlocationCallback", Toast.LENGTH_SHORT).show();
-//                        sendToStart();
-                    } else if (currentuser != null && (boolean) userSettingsMap.get("share position")) {
-                        // in firebase db
-                        currentuser = mAuth.getCurrentUser().getUid();
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users/" + currentuser + "/geofire");
-                        geoFire = new GeoFire(ref);
-                        geoFire.setLocation(currentuser, new GeoLocation(lastLocation.getLatitude(),
-                                lastLocation.getLongitude()), new GeoFire.CompletionListener() {
-                            @Override
-                            public void onComplete(String key, DatabaseError error) {
-                                if (error != null) {
-                                    Toast.makeText(MapActivity.this, "error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                                } else {
-//                                Toast.makeText(MapActivity.this, "location set!", Toast.LENGTH_SHORT).show();
-                                    //animate camera
-
-                                }
-                            }
-                        });
-                        //in firestore
-                        if (lastLocation != null && (boolean) userSettingsMap.get("share position")) {
+                        Toast.makeText(MapActivity.this, "Please log in to use the app!", Toast.LENGTH_SHORT).show();
+                        sendToStart();
+                    } else if ((boolean) userSettingsMap.get("get position")) {
+                        //update last location in firestore
+                        if (lastLocation != null && (boolean) userSettingsMap.get("get position")) {
 //                            Map<String, Object> userMap = new HashMap<>();
 //                            userMap.put("current location", new GeoPoint(location.getLatitude(), location.getLongitude()));
                             db.collection("users").document(currentUser.getUid())
-                                    .update("current location", new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude()))
+                                    .update("current location", new GeoPoint(latitude, longitude))
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-
+//                                            Toast.makeText(MapActivity.this, "updated current location", Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(MapActivity.this, "could not update location on db: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, "onFailure: could not update location on firestore: " + e.getMessage());
+//                                    Toast.makeText(MapActivity.this, "could not update location on db: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
 
+
+                        /**
+                         *  TODO: ACTIVATE THIS FEATURE AFTER TRIAL
+                         * THIS IS A BETA FEATURE IT WILL BE USED WITH AI TO DETERMINE THE SAFEST ROUTE WITHOUT
+                         * HUMAN INTERACTION, ALL BY GETTING THE LOCATION OF EVERY USER AND SAVING IT AT ALL TIMES
+                         * TAKING INTO EFFECT THEIR PAST DECISIONS AND IF THEY HAVE A CARD AND THE CHANGES THAT OCCUR
+                         * TO THEIR DAILY SCHEDULE.
+                         * FOR NOW WE WILL STICK TO SAVING THE LAST KNOWN LOCATION ONLY
+                         *
+                         *
+                         */
+                        // create new document for each new location
+//                        Map<String, Object> locationMap = new HashMap<>();
+//                        locationMap.put("location", new GeoPoint(latitude, longitude));
+//                        locationMap.put("id", currentUser.getUid());
+//                        locationMap.put("timestamp", Timestamp.now());
+//                        String roundedGeolocation;
+//                        roundedGeolocation = String.format("(%.02f,%.02f)", latitude, longitude);
+//                        db.collection("users").document(currentUser.getUid()).collection("location")
+//                                .document(currentUser.getUid() + roundedGeolocation)
+//                                .set(locationMap)
+//                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                    @Override
+//                                    public void onSuccess(Void aVoid) {
+//                                        Toast.makeText(MapActivity.this, "added document to location collection!", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                })
+//                                .addOnFailureListener(new OnFailureListener() {
+//                                    @Override
+//                                    public void onFailure(@NonNull Exception e) {
+//                                        Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
                     }
-
-
                 }
             }
         };
@@ -2458,23 +2560,6 @@ public class MapActivity extends AppCompatActivity implements
                             mToolbar.setTitle(currentCity);
                         } else {
                             Toast.makeText(MapActivity.this, "please logout then login again!", Toast.LENGTH_SHORT).show();
-                        }
-                        // update the current location on the firestore db
-                        if (location != null && (boolean) userSettingsMap.get("share position")) {
-//                            Map<String, Object> userMap = new HashMap<>();
-//                            userMap.put("current location", new GeoPoint(location.getLatitude(), location.getLongitude()));
-                            db.collection("users").document(currentUser.getUid()).update("current location", new GeoPoint(location.getLatitude(), location.getLongitude()))
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(MapActivity.this, "could not update location on db: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
                         }
                     }
                 });

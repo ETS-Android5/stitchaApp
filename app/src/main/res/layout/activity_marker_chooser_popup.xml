@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.alainsaris.stitcha.MarkerChooserPopup">
+
+    <!--    <android.support.constraint.Guideline-->
+    <!--        android:id="@+id/startVerticalGuideline"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintGuide_percent="0.75" />-->
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_guidline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_guidline_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guidline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="1dp" />
+
+    <TextView
+        android:id="@+id/textViewPoliceMarker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Police"
+        android:textColor="@color/places_text_black_alpha_87"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewPoliceMarker"
+        app:layout_constraintStart_toStartOf="@+id/imageViewPoliceMarker"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPoliceMarker" />
+
+    <ImageView
+        android:id="@+id/imageViewPoliceMarker"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/markers_police_marker"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewTicketsMarker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popup_message_edit_text" />
+
+    <TextView
+        android:id="@+id/textViewTicketsMarker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tickets"
+        android:textColor="@color/places_text_black_alpha_87"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewTicketsMarker"
+        app:layout_constraintStart_toStartOf="@+id/imageViewTicketsMarker"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPoliceMarker" />
+
+    <ImageView
+        android:id="@+id/imageViewTicketsMarker"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:src="@drawable/markers_ticket_marker"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_guidline"
+        app:layout_constraintTop_toTopOf="@+id/imageViewPoliceMarker" />
+
+    <TextView
+        android:id="@+id/textViewFireMarker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fire"
+        android:textColor="@color/places_text_black_alpha_87"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewFireMarker"
+        app:layout_constraintStart_toStartOf="@+id/imageViewFireMarker"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFireMarker" />
+
+    <ImageView
+        android:id="@+id/imageViewFireMarker"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/markers_fire_marker"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewPoliceMarker"
+        app:layout_constraintStart_toStartOf="@+id/imageViewPoliceMarker"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPoliceMarker" />
+
+    <TextView
+        android:id="@+id/textViewProtestsMarker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Protests"
+        android:textColor="@color/places_text_black_alpha_87"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewProtestsMarker"
+        app:layout_constraintStart_toStartOf="@+id/imageViewProtestsMarker"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFireMarker" />
+
+    <ImageView
+        android:id="@+id/imageViewProtestsMarker"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/markers_protests_marker"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewTicketsMarker"
+        app:layout_constraintStart_toStartOf="@+id/imageViewTicketsMarker"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPoliceMarker" />
+
+    <EditText
+        android:id="@+id/popup_message_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="95dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="20dp"
+        android:hint="Put addictional info here!"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_guidline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

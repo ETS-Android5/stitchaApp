@@ -26,4 +26,10 @@
         <item name="android:textColor">@color/quantum_white_text</item>
     </style>
 
+    <style name="AppTheme.PopupTheme">
+
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
 </resources>
