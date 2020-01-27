@@ -1508,6 +1508,7 @@ public class MapActivity extends AppCompatActivity implements
     Marker mClosestMarker;
     float mindist;
 
+
     /**
      * a simple function to read from a textFile
      * this function is used to read the geojson in R.raw
