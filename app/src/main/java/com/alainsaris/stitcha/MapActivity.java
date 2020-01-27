@@ -3,9 +3,11 @@ package com.alainsaris.stitcha;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.app.PendingIntent;
-import android.content.Context;
+import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -13,23 +15,23 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,6 +81,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -98,6 +101,7 @@ import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -107,6 +111,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.SetOptions;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -115,6 +120,9 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.squareup.picasso.Picasso;
 
+import org.imperiumlabs.geofirestore.GeoFirestore;
+import org.imperiumlabs.geofirestore.GeoQuery;
+import org.imperiumlabs.geofirestore.listeners.GeoQueryDataEventListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -122,12 +130,11 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
@@ -142,6 +149,10 @@ public class MapActivity extends AppCompatActivity implements
     boolean rewardedAdShown = false;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+
+    // keep track of all the markers
+    List<Marker> markers = new ArrayList<>();
+    HashMap<String, Marker> visibleMarkers = new HashMap<String, Marker>();
 
     //admob
     private InterstitialAd mInterstitialAd;
@@ -160,6 +171,9 @@ public class MapActivity extends AppCompatActivity implements
     private Map<String, Object> userSettingsMap = new HashMap<>();
     // ...
     String facebookUserId = "";
+
+    // marker creation options
+    String markerType;
 
     //ui
     private Button mBtnChat;
@@ -184,6 +198,9 @@ public class MapActivity extends AppCompatActivity implements
     private String selectedStation;
     private String currentStation;
     private String currentCity;
+
+    int drawableId;
+    String markerMessage;
 
     // button
     private ImageView addMarkerBtn;
@@ -220,6 +237,7 @@ public class MapActivity extends AppCompatActivity implements
     private HashMap<String, Object> votesHashMap;
     private RewardedAd rewardedAd;
     private boolean mapStyleDark;
+    private boolean mapClickListenerActivated = false;
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -259,7 +277,8 @@ public class MapActivity extends AppCompatActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                String result = data.getStringExtra("result");
+                String result = data.getStringExtra("type");
+                markerMessage = data.getStringExtra("message");
                 Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
                 addMarker(result);
             }
@@ -270,38 +289,29 @@ public class MapActivity extends AppCompatActivity implements
     }
 
     private void addMarker(String result) {
-        int drawableId = R.drawable.markers_fire_marker;
-        String message = "alert!";
+        drawableId = R.drawable.markers_fire_marker;
+
+        markerType = "alert";
         switch (result) {
             case "policeMarker":
                 drawableId = R.drawable.markers_police_marker;
-                message = "Police!";
+                markerType = "police";
                 break;
             case "ticketsMarker":
                 drawableId = R.drawable.markers_ticket_marker;
-                message = "Tickets!";
+                markerType = "tickets";
                 break;
             case "fireMarker":
                 drawableId = R.drawable.markers_fire_marker;
-                message = "Fire!!!";
+                markerType = "fire";
                 break;
             case "protestMarker":
                 drawableId = R.drawable.markers_protests_marker;
-                message = "Protests!";
+                markerType = "protests";
                 break;
         }
+        mapClickListenerActivated = true;
 
-
-        int height = 100;
-        int width = 100;
-        Bitmap b = BitmapFactory.decodeResource(getResources(), drawableId);
-        Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-        BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromBitmap(smallMarker);
-        LatLng markerPosition = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions().position(markerPosition)
-                .title(message)
-                .icon(markerIcon);
-        mMap.addMarker(markerOptions);
     }
 
 
@@ -327,6 +337,7 @@ public class MapActivity extends AppCompatActivity implements
         }
     }
 
+    @SuppressLint("RestrictedApi")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -339,6 +350,13 @@ public class MapActivity extends AppCompatActivity implements
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         );
+
+        // GPS SHIT
+//        LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) this);
 
         requestPermissionsWithDexter();
         mapStyleDark = true;
@@ -413,41 +431,7 @@ public class MapActivity extends AppCompatActivity implements
         navigationView = findViewById(R.id.drawer);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         currentCity = "lyon";
-
-//        requestPermissions();
-
-
-//        Dexter.withActivity(this)
-//                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-//                .withListener(new PermissionListener() {
-//                    @Override
-//                    public void onPermissionGranted(PermissionGrantedResponse response) {
-//                        //as long as the user has permissions this part will be called
-//                        //wether it's the first time he get the permissions or not!!
-//                        buildLocationRequest();
-//                        buildLocationCallback();
-//                        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity.this);
-//                        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                                .findFragmentById(R.id.map_mapFragment);
-//                        mapFragment.getMapAsync(MapActivity.this);
-//
-//
-//                    }
-//
-//                    @Override
-//                    public void onPermissionDenied(PermissionDeniedResponse response) {
-//                        Toast.makeText(MapActivity.this, "you must enable permission!", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                    @Override
-//                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-//
-//                    }
-//
-//
-//                }).check();
 
         //ui elements
         //map
@@ -458,12 +442,15 @@ public class MapActivity extends AppCompatActivity implements
 
 //        mBtnSafe = findViewById(R.id.map_safe_btn);
         mBtnUnsafe = findViewById(R.id.map_unsafe_btn);
+        mBtnUnsafe.setVisibility(View.GONE);
         profilePic = findViewById(R.id.map_profile_picture);
+        profilePic.setClickable(false);
         mBtnAddGeofences = findViewById(R.id.add_geo_fences_btn);
         selectedStationTextView = findViewById(R.id.map_station_name_textview);
         currentGeoStateTextView = findViewById(R.id.map_current_geostate);
         feedBtn = findViewById(R.id.feed);
         unsafeVotesTextView = findViewById(R.id.textView_unsafe);
+        unsafeVotesTextView.setVisibility(View.GONE);
         unsafeVotesTextView.setText("--");
 
         disableButtons();
@@ -478,18 +465,21 @@ public class MapActivity extends AppCompatActivity implements
                 else drawerLayout.closeDrawer(Gravity.END);
             }
         });
+        profilePic.setClickable(false);
 
         feedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                Toast.makeText(MapActivity.this, "clicked feedBtn", Toast.LENGTH_SHORT).show();
-
-//                intent.putExtra("USER_ID", mAuth.getCurrentUser().getUid());
-//                intent.putExtra("STATION", selectedStation);
                 Intent intent = new Intent(MapActivity.this, FeedActivity.class);
-                intent.putExtra("CURRENT_CITY", currentCity);
+                if (lastLocation != null) {
+                    intent.putExtra("LATITUDE", lastLocation.getLatitude());
+                    intent.putExtra("LONGITUDE", lastLocation.getLongitude());
+                }
+
                 startActivity(intent);
+                // This makes the new screen slide up as it fades in
+                // while the current screen slides up as it fades out.
+                overridePendingTransition(R.anim.up_in, R.anim.up_out);
                 /**
                  * TODO: need to add a functionality to unlock the feed with a rewarded ad
                  * currently the rewarded ad is disabled
@@ -537,6 +527,7 @@ public class MapActivity extends AppCompatActivity implements
 
             }
         });
+
 
         //clicking initialisation and correction
         safeBtnClicked = false;
@@ -1125,211 +1116,102 @@ public class MapActivity extends AppCompatActivity implements
     @Override
     public boolean onMarkerClick(final Marker marker) {
         /**
-         * when marker clicked appbar title is updated to the marker's title
-         * a snapshot to the votes is added
-         * on the same snapshot update whether the current user has voted on this station on not
-         * added snapshot detachement
          *
+         * this is the new way of voting without adding markers and then voting
+         * just putting the markers on the map and they are visible to all the users
+         * we do not need the feed or the vote button for the moment
          */
-        disableButtons();
-        //detaching snapshotListeners
-        if (unsafeVotersRegistration != null) {
-            unsafeVotersRegistration.remove();
-        }
-        if (unsafeVotesRegistration != null) {
-            unsafeVotesRegistration.remove();
-        }
 
-        selectedStation = marker.getTitle();
-        if (selectedStation != null) {
-//            mToolbar.setTitle(currentCity + ": " + selectedStation);
-            mToolbar.setTitle(selectedStation);
-            setSupportActionBar(mToolbar);
-        }
-        DocumentReference unsafeVotesRef;
-        DocumentReference unsafeVotersRef;
-        if (selectedStation != null) {
-            unsafeVotersRef = db.collection("cities").document(currentCity).collection(currentCity + " stations")
-                    .document(selectedStation).collection("unsafe voters").document("unsafe voters");
-            unsafeVotersRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot unsafeVotersDocument = task.getResult();
-                        List<String> unsafeVotersList = (List<String>) unsafeVotersDocument.get("unsafe voters");
-//                        Toast.makeText(MapActivity.this, (CharSequence) unsafeVotersDocument.get("unsafe voters"), Toast.LENGTH_SHORT).show();
-                        if (unsafeVotersList != null) {
-                            if (unsafeVotersList.contains(mAuth.getCurrentUser().getUid())) {
-                                mBtnUnsafe.setText("-");
-                                unsafeBtnClicked = true;
-                                enableButtons();
-                            } else {
-                                mBtnUnsafe.setText("+");
-                                unsafeBtnClicked = false;
-                                enableButtons();
-                            }
-                        } else {
-                            mBtnUnsafe.setText("+");
-                            unsafeBtnClicked = false;
-                            enableButtons();
-                        }
-
-                    } else {
-                        Toast.makeText(MapActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        disableButtonsNotConnected();
-                    }
-                }
-            });
-
-            unsafeVotesRef = db.collection("cities").document(currentCity).collection(currentCity + " stations")
-                    .document(selectedStation).collection("unsafe votes").document("unsafe votes");
-            unsafeVotesRegistration = unsafeVotesRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-//                    Toast.makeText(MapActivity.this, "event on unsavfeVOTESregistration", Toast.LENGTH_SHORT).show();
-                    if (e == null && documentSnapshot.exists() && documentSnapshot != null) {
-                        String unsafeVotesNumber;
-                        unsafeVotesNumber = String.valueOf(documentSnapshot.get("unsafe votes"));
-                        unsafeVotesTextView.setText(unsafeVotesNumber);
-                    } else if (e != null) {
-                        Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-            //unecessary snapshot
-//            unsafeVotersRef = db.collection("cities").document(currentCity).collection(currentCity + " stations")
-//                    .document(selectedStation).collection("unsafe voters").document("unsafe voters");
-//            unsafeVotersRegistration = unsafeVotersRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//                @Override
-//                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-////                    Toast.makeText(MapActivity.this, "event on unsafeVOTERSregistration", Toast.LENGTH_SHORT).show();
-//                    if (e == null && documentSnapshot.exists() && documentSnapshot != null) {
-//                        List<String> unsafeVotersList = (List<String>) documentSnapshot.get("unsafe voters");
-//                        for (int i = 0; i < unsafeVotersList.size(); i++) {
-//                            if (unsafeVotersList.contains(currentUser.getUid())) {
-//                                mBtnUnsafe.setText("-");
-//                                unsafeBtnClicked = true;
-//                                Toast.makeText(MapActivity.this, currentUser.getUid() + " exists!", Toast.LENGTH_SHORT).show();
-//                            }
-//                            if (!unsafeVotersList.contains(currentUser.getUid())) {
-//                                mBtnUnsafe.setText("+");
-//                                unsafeBtnClicked = false;
-//                                Toast.makeText(MapActivity.this, currentUser.getUid() + " does not exists!", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    } else {
-//                        Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                }
-//            });
-
-            //b4 using the snapshotlistener on a subcollection's document!!!!!!!
-            //get the number of unsafe vote & the if the user voted for this station or not
-//            registration = unsafeVotesRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//                @Override
-//                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-//                    Toast.makeText(MapActivity.this, "EVENT!!!", Toast.LENGTH_SHORT).show();
-//                    if (documentSnapshot.exists()) {
-//                        List<String> unsafeVotersList = (List<String>) documentSnapshot.get("unsafe voters");
-//                        unsafeVotesTextView.setText(String.valueOf((int) unsafeVotersList.size()));
-//                        for (int i = 0; i < unsafeVotersList.size(); i++) {
-//                            if (unsafeVotersList.contains(currentUser.getUid())) {
-//                                mBtnUnsafe.setText("-");
-//                                unsafeBtnClicked = true;
-//                                Toast.makeText(MapActivity.this, currentUser.getUid() + " exists!", Toast.LENGTH_SHORT).show();
-//                            } else if (!unsafeVotersList.contains(currentUser.getUid())) {
-//                                mBtnUnsafe.setText("+");
-//                                unsafeBtnClicked = false;
-//                                Toast.makeText(MapActivity.this, currentUser.getUid() + " does not exists!", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    }
-//                }
-//            });
-            //unused Snapshot
-//            currentStationRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//                @Override
-//                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-//                    if (e != null) {
-//                        Log.w(TAG, "Listen failed.", e);
-//                        return;
-//                    }
-//                    if (documentSnapshot != null && documentSnapshot.exists()) {
-//                        Log.d(TAG, "Current data: " + documentSnapshot.getData());
-//                        List<String> unsafeVotersList = (List<String>) documentSnapshot.get("unsafe voters");
-//                        int unsafeVotes = unsafeVotersList.size();
-//                        unsafeVotesTextView.setText(String.valueOf((int) unsafeVotes));
-//                    } else {
-//                        Log.d(TAG, "Current data: null");
-//                    }
-//                }
-//            });
-        }
-
+        // we start off by showing an ad
         Log.d(TAG, "onMarkerClick: called!");
-//        String markerTitle = marker.getTitle();
-//        Toast.makeText(this, "" + markerTitle, Toast.LENGTH_SHORT).show();
         //show an add
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
             Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
-        if (selectedStation != null) {
-            Log.d(TAG, "onMarkerClick: selectedStation != null");
-//            mToolbar.setTitle(currentCity + ": " + selectedStation);
-            mToolbar.setTitle(selectedStation);
-            setSupportActionBar(mToolbar);
-        }
 
-        //unused firebaseRef.get()
-//        db.collection("cities").document(currentCity).collection(currentCity + " stations").whereEqualTo("location", marker.getPosition())
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        for (QueryDocumentSnapshot document : task.getResult()) {
-//                            selectedStation = document.getId();
-//                            DocumentReference currentStationRef = db.collection("cities").document(currentCity).collection(currentCity + " stations").document(selectedStation);
-//                            currentStationRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                    long safeVotes = 0;
-//                                    long unsafeVotes = 0;
-//                                    if (task.isSuccessful()) {
-//                                        DocumentSnapshot document = task.getResult();
-//                                        if (document.exists()) {
-//                                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-////                                            Toast.makeText(MapActivity.this, "" + document.getData(), Toast.LENGTH_SHORT).show();
-//                                            Map<String, Object> stationHashmap = document.getData();
-//                                            safeVotes = (long) stationHashmap.get("safe votes");
-//                                            unsafeVotes = (long) stationHashmap.get("unsafe votes");
+
+        /**
+         * OLD SHIT UNDER ->
+         * when marker clicked appbar title is updated to the marker's title
+         * a snapshot to the votes is added
+         * on the same snapshot update whether the current user has voted on this station on not
+         * added snapshot detachement
+         *
+         */
+//        disableButtons();
+//        //detaching snapshotListeners
+//        if (unsafeVotersRegistration != null) {
+//            unsafeVotersRegistration.remove();
+//        }
+//        if (unsafeVotesRegistration != null) {
+//            unsafeVotesRegistration.remove();
+//        }
 //
-////                                            unsafeVotesTextView.setText(String.valueOf((int) unsafeVotes));
-////                                            Toast.makeText(MapActivity.this, String.format(getString(R.string.unsafe), getString(R.string.safe), safeVotes, unsafeVotes), Toast.LENGTH_SHORT).show();
-//                                            marker.setTag(stationHashmap);
-//                                            if (selectedStation != null) {
-//                                                mToolbar.setTitle(currentCity + ": " + selectedStation);
-//                                                setSupportActionBar(mToolbar);
-//                                            }
-//
-//
-//                                        } else {
-//                                            Log.d(TAG, "No such document");
-//                                        }
-//                                    } else {
-//                                        Log.d(TAG, "get failed with ", task.getException());
-//                                    }
-//                                }
-//                            });
+//        selectedStation = marker.getTitle();
+//        if (selectedStation != null) {
+////            mToolbar.setTitle(currentCity + ": " + selectedStation);
+//            mToolbar.setTitle(selectedStation);
+//            setSupportActionBar(mToolbar);
+//        }
+//        DocumentReference unsafeVotesRef;
+//        DocumentReference unsafeVotersRef;
+//        if (selectedStation != null) {
+//            unsafeVotersRef = db.collection("cities").document(currentCity).collection(currentCity + " stations")
+//                    .document(selectedStation).collection("unsafe voters").document("unsafe voters");
+//            unsafeVotersRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        DocumentSnapshot unsafeVotersDocument = task.getResult();
+//                        List<String> unsafeVotersList = (List<String>) unsafeVotersDocument.get("unsafe voters");
+////                        Toast.makeText(MapActivity.this, (CharSequence) unsafeVotersDocument.get("unsafe voters"), Toast.LENGTH_SHORT).show();
+//                        if (unsafeVotersList != null) {
+//                            if (unsafeVotersList.contains(mAuth.getCurrentUser().getUid())) {
+//                                mBtnUnsafe.setText("-");
+//                                unsafeBtnClicked = true;
+//                                enableButtons();
+//                            } else {
+//                                mBtnUnsafe.setText("+");
+//                                unsafeBtnClicked = false;
+//                                enableButtons();
+//                            }
+//                        } else {
+//                            mBtnUnsafe.setText("+");
+//                            unsafeBtnClicked = false;
+//                            enableButtons();
 //                        }
 //
-////                        Toast.makeText(MapActivity.this, "SELECTED: " + selectedStation, Toast.LENGTH_SHORT).show();
-////                        selectedStationTextView.setText(selectedStation);
+//                    } else {
+//                        Toast.makeText(MapActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                        disableButtonsNotConnected();
 //                    }
-//                });
+//                }
+//            });
+//
+//            unsafeVotesRef = db.collection("cities").document(currentCity).collection(currentCity + " stations")
+//                    .document(selectedStation).collection("unsafe votes").document("unsafe votes");
+//            unsafeVotesRegistration = unsafeVotesRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//                @Override
+//                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+////                    Toast.makeText(MapActivity.this, "event on unsavfeVOTESregistration", Toast.LENGTH_SHORT).show();
+//                    if (e == null && documentSnapshot.exists() && documentSnapshot != null) {
+//                        String unsafeVotesNumber;
+//                        unsafeVotesNumber = String.valueOf(documentSnapshot.get("unsafe votes"));
+//                        unsafeVotesTextView.setText(unsafeVotesNumber);
+//                    } else if (e != null) {
+//                        Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//        }
+//        if (selectedStation != null) {
+//            Log.d(TAG, "onMarkerClick: selectedStation != null");
+////            mToolbar.setTitle(currentCity + ": " + selectedStation);
+//            mToolbar.setTitle(selectedStation);
+//            setSupportActionBar(mToolbar);
+//        }
         return false;
     }
 
@@ -1504,8 +1386,69 @@ public class MapActivity extends AppCompatActivity implements
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        // creates a new query around [37.7832, -122.4056] with a radius of 0.6 kilometers
+        CollectionReference collectionRef = FirebaseFirestore.getInstance().collection("markers");
+        final GeoFirestore geoFirestore = new GeoFirestore(collectionRef);
         Log.d(TAG, "onMapReady: called!");
         mMap = googleMap;
+        mMap.setOnMarkerClickListener(this);
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                if (mapClickListenerActivated) {
+
+                    //add merker
+//                    int height = 100;
+//                    int width = 100;
+//                    Bitmap b = BitmapFactory.decodeResource(getResources(), drawableId);
+//                    Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+//                    BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromBitmap(smallMarker);
+                    LatLng markerPosition = new LatLng(latLng.latitude, latLng.longitude);
+//                    MarkerOptions markerOptions = new MarkerOptions().position(markerPosition)
+//                            .title(markerType + ": " + markerMessage)
+//                            .icon(markerIcon);
+//                    mMap.addMarker(markerOptions);
+                    mapClickListenerActivated = false;
+
+
+                    /**
+                     * PUT THE MARKER IN GEOFIRESTORE
+                     * LOAD ALL THE MARKERS THAT ARE
+                     * WITHIN THE CURRENT USER'S LOCATION QUERY
+                     */
+                    // put marker in firestore
+                    String docId = markerPosition.latitude + "," + markerPosition.longitude + "_" + currentUser.getUid();
+                    try {
+                        // first it will create a marker document containing only the geofirestore data
+                        // then it will add the other marker data to the document (type, message, id, timestamp)
+                        DocumentReference docRef = db.collection("markers").document(docId);
+                        Map<String, Object> markerMap = new HashMap<>();
+                        markerMap.put("type", markerType);
+                        markerMap.put("message", markerMessage);
+                        markerMap.put("userId", currentUser.getUid());
+                        markerMap.put("timestamp", Timestamp.now().toDate());
+                        docRef.set(markerMap, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                            }
+                        });
+                        geoFirestore.setLocation(docId, new GeoPoint(markerPosition.latitude, markerPosition.longitude));
+                    } catch (Exception e) {
+                        if (e == null) {
+                            Log.d(TAG, "Location saved on server successfully!");
+                            // here we add other info to the just created doc
+                        } else {
+                            Log.d(TAG, "couldn't save location on map: " + e.getMessage());
+                        }
+                    }
+
+
+                } else {
+                    //do nothing for the moment
+                }
+            }
+        });
         mMap.getUiSettings().setMapToolbarEnabled(false);
         updateLocationUI();
 
@@ -1553,261 +1496,6 @@ public class MapActivity extends AppCompatActivity implements
         if (fusedLocationProviderClient != null)
             fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
 
-//        addGeoFencing();
-    }
-
-    /**
-     * add the markers and the geofences in one function
-     */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void addGeoFencing() {
-        Log.d(TAG, "addGeoFencing: called!");
-        Log.d(TAG, "addGeoFencing: after calling getDeviceLocation!");
-        JSONObject featuresObject = new JSONObject();
-        JSONObject stationObject = new JSONObject();
-        int currentCityFile = 0;
-        /**
-         * TODO: REMOVE THIS SHIT XD
-         * I KNOW THIS PART IS ABSOLUTE SHIT
-         * BUT THIS IS JUST TEMPORARY TO TRY AND ADD OTHER FEATURES
-         * IN THE MEAN TIME WE'LL USE THIS TO:
-         *
-         */
-        if (currentCity == "lille") {
-            currentCityFile = R.raw.lille_stations;
-        } else if (currentCity == "paris") {
-            currentCityFile = R.raw.paris_stations;
-        } else if (currentCity == "toulouse") {
-            currentCityFile = R.raw.toulouse_stations;
-        } else if (currentCity == "lyon") {
-            currentCityFile = R.raw.lyon_stations;
-        }
-        InputStream XmlFileInputStream = getResources().openRawResource(currentCityFile); // getting XML
-        String stationsObjectString = readTextFile(XmlFileInputStream);
-        try {
-            featuresObject = new JSONObject(stationsObjectString);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JSONArray featuresArray = null;
-        try {
-            featuresArray = new JSONArray(featuresObject.get("features").toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        /**the new updating functin with location
-         * this worked from the first try XD lol
-         * TODO: PUT THIS CODE IN THE ADMIN APP THAT I'LL MAKE LATER
-         */
-//        for (String key : stationsNames.keySet()) {
-//            Map<String, Object> city = new HashMap<>();
-//            city.put("name", key);
-//            city.put("current users", 0);
-//            city.put("has internet", true);
-//            city.put("line", Arrays.asList("1"));
-//            city.put("number of lines", 0);
-//            city.put("safe votes", 0);
-//            city.put("unsafe votes", 0);
-//            city.put("location", stationsNames.get(key));
-//            city.put("safe voters", Arrays.asList());
-//            city.put("unsafe voters", Arrays.asList());
-//
-//            db.collection("cities").document(currentCity).collection(currentCity + " stations").document(key)
-//                    .set(city)
-//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                            Log.d(TAG, "onSuccess: added successfully: ");
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Log.d(TAG, "onFailure: " + e.getMessage());
-//                        }
-//                    });
-
-//            Map<String, Object> unsafeVotesMap = new HashMap<>();
-////            unsafeVotesMap.put("unsafe votes", 0);
-////
-////            db.collection("cities").document(currentCity).collection(currentCity + " stations").document(key)
-////                    .collection("unsafe votes").document("unsafe votes")
-////                    .set(unsafeVotesMap)
-////                    .addOnFailureListener(new OnFailureListener() {
-////                        @Override
-////                        public void onFailure(@NonNull Exception e) {
-////                            Log.d(TAG, "onFailure: " + e.getMessage());
-////                            Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-////                        }
-////                    });
-////
-////            Map<String, Object> unsafeVotersMap = new HashMap<>();
-////            unsafeVotersMap.put("unsafe voters", Arrays.asList());
-////            unsafeVotersMap.put("test", 1);
-////            db.collection("cities").document(currentCity).collection(currentCity + " stations").document(key)
-////                    .collection("unsafe voters").document("unsafe voters")
-////                    .set(unsafeVotersMap)
-////                    .addOnFailureListener(new OnFailureListener() {
-////                        @Override
-////                        public void onFailure(@NonNull Exception e) {
-////                            Log.d(TAG, "onFailure: " + e.getMessage());
-////                            Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-////                        }
-////                    });
-////        }
-
-        /**
-         * TODO: I DON'T EVEN KNOW WHAT TEH FUCK AM I DOING RIGHT NOW BROOOOOO!!!
-         * THIS IS A FUCKING TEST
-         * I'M GOING TO DISABLE ALL THE MARKERS NOW
-         * AND I WILL ONLY USE THE MARKERS GIVEN BY THE USERS
-         * THIS SHOULD BE BETTER I THINK
-         */
-
-        String stationName = "station name";
-        String line = "";
-        Double latitude = 0.0;
-        Double longitude = 0.0;
-        LatLng latLng;
-        for (int i = 0; i < featuresArray.length(); i++) {
-            try {
-                stationObject = (JSONObject) featuresArray.get(i);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                //get the station's name
-                stationName = (String) stationObject.getJSONObject("properties").get("name");
-                //get the station's line
-                line = (String) stationObject.getJSONObject("properties").get("line");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                //get the station's coordinates
-                JSONArray coordinatesArray;
-                coordinatesArray = new JSONArray(stationObject.getJSONObject("geometry").getJSONArray("coordinates").toString());
-                latitude = (Double) coordinatesArray.get(1);
-                longitude = (Double) coordinatesArray.get(0);
-
-                //add the marker
-                latLng = new LatLng(latitude, longitude);
-                mMap.addMarker(new MarkerOptions().position(latLng).title(stationName));
-//                marker.setTag(latLng);
-                mMap.setOnMarkerClickListener(this);
-
-                //add the geofence to the geofence list
-                mGeofenceList.add(new Geofence.Builder()
-                        // Set the request ID of the geofence. This is a string to identify this
-                        // geofence.
-//                        .setRequestId(stationObject.getJSONObject("properties").getString("@id"))
-                        .setRequestId("a test")
-                        // Set the circular region of this geofence.
-                        .setCircularRegion(
-                                latitude,
-                                longitude,
-                                100)
-
-                        // Set the expiration duration of the geofence. This geofence gets automatically
-                        // removed after this period of time.
-                        .setExpirationDuration(3000)
-
-                        // Set the transition types of interest. Alerts are only generated for these
-                        // transition. We track entry and exit transitions in this sample.
-                        .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
-                                Geofence.GEOFENCE_TRANSITION_EXIT)
-
-                        // Create the geofence.
-                        .build());
-
-                // get the current user's location
-                if (latitude != null && longitude != null && currentuser != null) {
-                    //geofire stuff
-                    final String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users/" + currentuser + "/geofire");
-                    geoFire = new GeoFire(ref);
-//                    GeoQuery geoQuery = geoFire.queryAtLocation(new GeoLocation(latitude, longitude), 0.2);//200m
-//                    geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
-//                        @Override
-//                        public void onKeyEntered(String key, GeoLocation location) {
-//                            LatLng latLng = new LatLng(location.latitude, location.longitude);
-////                            Toast.makeText(MapActivity.this, key + " entered " + location, Toast.LENGTH_SHORT).show();
-//                            Log.d(TAG, "onKeyEntered: " + location);
-//                            //todo get the current station name (needs to be fixed 4 fucks sake)
-//                            db.collection("cities").document(currentCity).collection(currentCity + " stations").whereEqualTo("location", location)
-//                                    .get()
-//                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                                currentStation = document.getId();
-//                                            }
-//                                            Toast.makeText(MapActivity.this, "" + currentStation + " at ", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    });
-//
-//                            selectedStationTextView.setText(currentStation);
-//                            enableUi();
-//                        }
-//
-//                        @Override
-//                        public void onKeyExited(String key) {
-////                            Toast.makeText(MapActivity.this, key + " exited ", Toast.LENGTH_SHORT).show();
-////                            disableUi();
-//                            safeBtnClicked = false;
-//                            unsafeBtnClicked = false;
-//                        }
-//
-//                        @Override
-//                        public void onKeyMoved(String key, GeoLocation location) {
-////                            Toast.makeText(MapActivity.this, key + " moved ", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                        @Override
-//                        public void onGeoQueryReady() {
-////                            Toast.makeText(MapActivity.this, " geoqueryreqdy ", Toast.LENGTH_SHORT).show();
-//                            Log.d(TAG, "onGeoQueryReady: ");
-//                        }
-//
-//                        @Override
-//                        public void onGeoQueryError(DatabaseError error) {
-//                            System.err.println("There was an error with this query: " + error);
-//                        }
-//                    });
-                }
-
-//                Log.d(TAG, "addGeoFencing: created on:(" + latitude + "," + longitude + "), for: " + stationObject.getJSONObject("properties").getString("@id"));
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            stationsNames.put(stationName, new LatLng(latitude, longitude));
-        }
-
-        //add the geofences to the geofencing client from the mGeofencesList
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            requestPermissions();
-            requestPermissionsWithDexter();
-            return;
-        }
-//        mGeofencingClient.addGeofences(getGeofencingRequest(), getGeofencePendingIntent())
-//                .addOnSuccessListener(this, new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.d(TAG, "onSuccess: geofenccess added!");
-////                        Toast.makeText(MapActivity.this, "geo fences added succesfully", Toast.LENGTH_SHORT).show();
-//                    }
-//                })
-//                .addOnFailureListener(this, new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d(TAG, "onFailure: failed to add geofences! : " + e.getMessage());
-////                        Toast.makeText(MapActivity.this, "couldn't add geofences!", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                });
     }
 
     /**
@@ -1819,37 +1507,6 @@ public class MapActivity extends AppCompatActivity implements
 
     Marker mClosestMarker;
     float mindist;
-
-//    void createMarkersFromJson(String json) throws JSONException {
-//        // De-serialize the JSON string into an array of city objects
-//        JSONArray jsonArray = new JSONArray(json);
-//        for (int i = 0; i < jsonArray.length(); i++) {
-//            // Create a marker for each city in the JSON data.
-//            JSONObject jsonObj = jsonArray.getJSONObject(i);
-//            double lat = jsonObj.getJSONArray("latlng").getDouble(0);
-//            double lon = jsonObj.getJSONArray("latlng").getDouble(1);
-//            Marker currentMarker = map.addMarker(new MarkerOptions()
-//                    .title(jsonObj.getString("name"))
-//                    .snippet(Integer.toString(jsonObj.getInt("population")))
-//                    .position(new LatLng(
-//                            lat,
-//                            lon
-//                    ))
-//            );
-//
-//            float[] distance = new float[1];
-//            Location.distanceBetween(lastLocation.getLatitude(), lastLocation.getLongitude(), lat, lon, distance);
-//            if (i == 0) {
-//                mindist = distance[0];
-//            } else if (mindist > distance[0]) {
-//                mindist = distance[0];
-//                mClosestMarker = currentMarker;
-//            }
-//        }
-//
-//        Toast.makeText(MapActivity.this, "Closest Marker Distance: " + mClosestMarker.getTitle() + " " + mindist, Toast.LENGTH_LONG).show();
-//    }
-
 
     /**
      * a simple function to read from a textFile
@@ -1916,48 +1573,43 @@ public class MapActivity extends AppCompatActivity implements
         Log.d(TAG, "getDeviceLocation: called!");
 //        Toast.makeText(this, "called getDeviceLocation!", Toast.LENGTH_SHORT).show();
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        try {
-            if ((checkPermissions() == true) && (currentuser != null)) {
-                Log.d(TAG, "getDeviceLocation: checkPermissions && current user != null");
-                Task location = mFusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
-//                            Toast.makeText(MapActivity.this, "onComplete from inside getDeviceLocation!", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "onComplete: found location!");
-                            Location currentLocation = (Location) task.getResult();
-                            mLastKnownLocation = currentLocation;
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
-                                    DEFAULT_ZOOM);
-                            //geofire stuff
-                            currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users/" + currentuser + "/geofire");
-                            geoFire = new GeoFire(ref);
-                            geoFire.setLocation(currentuser, new GeoLocation(currentLocation.getLatitude(), currentLocation.getLongitude()), new GeoFire.CompletionListener() {
-                                @Override
-                                public void onComplete(String key, DatabaseError error) {
-                                    if (error != null) {
-                                        Log.d(TAG, "onComplete: error!!" + error);
-                                    } else {
-                                        Log.d(TAG, "onComplete: geofire location set succefully!");
-                                    }
-                                    getCurrentCity();
+        if ((checkPermissions() == true) && (currentuser != null)) {
+            Log.d(TAG, "getDeviceLocation: checkPermissions && current user != null");
+            Toast.makeText(MapActivity.this, "permission is and currentuser also!", Toast.LENGTH_SHORT).show();
+            Task location = mFusedLocationProviderClient.getLastLocation();
+            location.addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(MapActivity.this, "onComplete from inside getDeviceLocation!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onComplete: found location!");
+                        Location currentLocation = (Location) task.getResult();
+                        mLastKnownLocation = currentLocation;
+                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                DEFAULT_ZOOM);
+                        //geofire stuff
+                        currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users/" + currentuser + "/geofire");
+                        geoFire = new GeoFire(ref);
+                        geoFire.setLocation(currentuser, new GeoLocation(currentLocation.getLatitude(), currentLocation.getLongitude()), new GeoFire.CompletionListener() {
+                            @Override
+                            public void onComplete(String key, DatabaseError error) {
+                                if (error != null) {
+                                    Log.d(TAG, "onComplete: error!!" + error);
+                                } else {
+                                    Log.d(TAG, "onComplete: geofire location set succefully!");
                                 }
-                            });
-
-                        } else {
-                            requestPermissionsWithDexter();
-                            Log.d(TAG, "onComplete: current location is null");
-                            Toast.makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
-                        }
+                                getCurrentCity();
+                            }
+                        });
+                    } else {
+                        requestPermissionsWithDexter();
+                        Log.d(TAG, "onComplete: current location is null");
+                        Toast.makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
+            });
 
-            }
-        } catch (SecurityException e) {
-            Log.e(TAG, "getDeviceLocation: SecurityException" + e.getMessage());
-            Toast.makeText(MapActivity.this, "error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         Log.d(TAG, "getDeviceLocation: ENDED!!");
     }
@@ -2077,6 +1729,185 @@ public class MapActivity extends AppCompatActivity implements
                             });
                         }
 
+                        //geofirestore stuff
+                        CollectionReference collectionRef = FirebaseFirestore.getInstance().collection("markers");
+                        GeoFirestore geoFirestore = new GeoFirestore(collectionRef);
+                        GeoQuery geoQuery = geoFirestore.queryAtLocation(
+                                new GeoPoint(latitude, longitude),
+                                15);// 15 kms bro
+                        geoQuery.addGeoQueryDataEventListener(new GeoQueryDataEventListener() {
+                            @Override
+                            public void onDocumentEntered(DocumentSnapshot documentSnapshot, GeoPoint geoPoint) {
+                                if (documentSnapshot.get("type") == null) {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        public void run() {
+                                            // Actions to do after 10 seconds
+
+                                        }
+                                    }, 100);
+                                }
+                                String type = (String) documentSnapshot.get("type");
+                                String message = (String) documentSnapshot.get("message");
+                                Timestamp timestamp = (Timestamp) documentSnapshot.get("timestamp");
+                                String time = null;
+                                if (timestamp != null) {
+                                    time = timestamp.toDate().toString();
+                                }
+
+                                int height = 100;
+                                int width = 100;
+                                int markerDrawableId = R.drawable.markers_police_marker;
+
+                                if (type != null) {
+                                    switch (type) {
+                                        case "police":
+                                            markerDrawableId = R.drawable.markers_police_marker;
+                                            break;
+                                        case "tickets":
+                                            markerDrawableId = R.drawable.markers_ticket_marker;
+                                            break;
+                                        case "fire":
+                                            markerDrawableId = R.drawable.markers_fire_marker;
+                                            break;
+                                        case "protests":
+                                            markerDrawableId = R.drawable.markers_protests_marker;
+                                            break;
+                                    }
+                                }
+
+                                double timeDifference = Timestamp.now().getSeconds() - timestamp.getSeconds();
+                                double alphaValue = (100 + timeDifference * -0.00135) / 100;
+                                if (alphaValue < 0) {
+                                    alphaValue = 0;
+                                }
+                                boolean markerVisible = true;
+                                if (alphaValue == 0) {
+                                    markerVisible = false;
+                                }
+
+                                Bitmap b = BitmapFactory.decodeResource(getResources(), markerDrawableId);
+                                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                                BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromBitmap(smallMarker);
+                                LatLng markerPosition = new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude());
+                                MarkerOptions markerOptions = new MarkerOptions().position(markerPosition)
+                                        .title("Il y a " + secToTime((int) timeDifference) + (message == " " ? "" : ": '" + message + "'"))
+                                        .icon(markerIcon)
+                                        .visible(markerVisible)
+                                        .alpha((float) alphaValue);
+                                Log.d(TAG, "onDocumentEntered: added marker: " + alphaValue);
+                                Marker marker = mMap.addMarker(markerOptions);
+
+                                try {
+                                    visibleMarkers.put(documentSnapshot.getId(), marker);
+//                                    Toast.makeText(MapActivity.this, "marker added to visiblemarkers hashmap!", Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+//                                Toast.makeText(MapActivity.this, "" + visibleMarkers.keySet(), Toast.LENGTH_SHORT).show();
+//                                marker.setTag(documentSnapshot.getId());
+//                                mapClickListenerActivated = false;
+
+
+                            @Override
+                            public void onDocumentExited(DocumentSnapshot documentSnapshot) {
+//                                Toast.makeText(MapActivity.this, "exited: " + documentSnapshot.getId(), Toast.LENGTH_SHORT).show();
+                                try {
+                                    Marker oldMarker = visibleMarkers.get(documentSnapshot.getId());
+                                    oldMarker.remove();
+                                } catch (Exception e) {
+                                    Log.d(TAG, "onDocumentExited: " + e.getMessage());
+                                    Toast.makeText(MapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onDocumentMoved(DocumentSnapshot documentSnapshot, GeoPoint geoPoint) {
+                                Toast.makeText(MapActivity.this, "geofirestore: documentMoved", Toast.LENGTH_SHORT).show();
+//                                visibleMarkers.get(documentSnapshot.getId()).remove();
+                                visibleMarkers.get(documentSnapshot.getId()).setPosition(new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude()));
+                            }
+
+                            @Override
+                            public void onDocumentChanged(DocumentSnapshot documentSnapshot, GeoPoint geoPoint) {
+                                Toast.makeText(MapActivity.this, "geofirestore: document changed", Toast.LENGTH_SHORT).show();
+                                Marker oldMarker = visibleMarkers.get(documentSnapshot.getId());
+                                if (oldMarker != null) {
+                                    oldMarker.remove();
+                                    visibleMarkers.remove(documentSnapshot.getId());
+                                } else {
+                                    Log.d(TAG, "onDocumentChanged: this is a new marker oldMarker == null");
+                                }
+                                String type = (String) documentSnapshot.get("type");
+//                                Toast.makeText(MapActivity.this, type, Toast.LENGTH_SHORT).show();
+                                String message = (String) documentSnapshot.get("message");
+                                Timestamp timestamp = (Timestamp) documentSnapshot.get("timestamp");
+                                String time = null;
+                                if (timestamp != null) {
+                                    time = timestamp.toDate().toString();
+                                }
+
+                                int height = 100;
+                                int width = 100;
+                                int drawableId = R.drawable.markers_fire_marker;
+
+                                if (type != null) {
+                                    switch (type) {
+                                        case "police":
+                                            drawableId = R.drawable.markers_police_marker;
+                                            break;
+                                        case "tickets":
+                                            drawableId = R.drawable.markers_ticket_marker;
+                                            break;
+                                        case "fire":
+                                            drawableId = R.drawable.markers_fire_marker;
+                                            break;
+                                        case "protests":
+                                            drawableId = R.drawable.markers_protests_marker;
+                                            break;
+                                    }
+                                }
+
+                                double timeDifference = Timestamp.now().getSeconds() - timestamp.getSeconds();
+                                double alphaValue = (100 + timeDifference * -0.00135) / 100;
+                                if (alphaValue < 0) {
+                                    alphaValue = 0;
+                                }
+                                boolean markerVisible = true;
+                                if (alphaValue == 0) {
+                                    markerVisible = false;
+                                }
+
+                                Bitmap b = BitmapFactory.decodeResource(getResources(), drawableId);
+                                Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                                BitmapDescriptor markerIcon = BitmapDescriptorFactory.fromBitmap(smallMarker);
+                                LatLng markerPosition = new LatLng(geoPoint.getLatitude(), geoPoint.getLongitude());
+                                MarkerOptions markerOptions = new MarkerOptions().position(markerPosition)
+                                        .title("Il y a " + secToTime((int) timeDifference) + (message == " " ? "" : ": '" + message + "'"))
+                                        .icon(markerIcon)
+                                        .visible(markerVisible)
+                                        .alpha((float) alphaValue);
+                                Log.d(TAG, "onDocumentChanged: added marker: " + alphaValue);
+                                Marker marker = mMap.addMarker(markerOptions);
+                                visibleMarkers.put(documentSnapshot.getId(), marker);
+
+                            }
+
+                            @Override
+                            public void onGeoQueryReady() {
+//                                Toast.makeText(MapActivity.this, "ready!", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onGeoQueryError(Exception e) {
+                                Log.d(TAG, "onGeoQueryError: " + e.getMessage());
+//                                Toast.makeText(MapActivity.this, "geofirestore: error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
 
                         /**
                          *  TODO: ACTIVATE THIS FEATURE AFTER TRIAL
@@ -2115,6 +1946,44 @@ public class MapActivity extends AppCompatActivity implements
             }
         };
     }
+
+    //Note that the type "Items" will be whatever type of object you're adding markers for so you'll
+    //likely want to create a List of whatever type of items you're trying to add to the map and edit this appropriately
+    //Your "Item" class will need at least a unique id, latitude and longitude.
+//    private void addItemsToMap(List<ClipData.Item> items) {
+//        if (this.mMap != null) {
+//            //This is the current user-viewable region of the map
+//            LatLngBounds bounds = this.mMap.getProjection().getVisibleRegion().latLngBounds;
+//
+//            //Loop through all the items that are available to be placed on the map
+//            for (ClipData.Item item : items) {
+//
+//                //If the item is within the the bounds of the screen
+//                if (bounds.contains(new LatLng(item.getLatitude(), item.getLongitude()))
+//                {
+//                    //If the item isn't already being displayed
+//                    if (!courseMarkers.containsKey(item.getId())) {
+//                        //Add the Marker to the Map and keep track of it with the HashMap
+//                        //getMarkerForItem just returns a MarkerOptions object
+//                        this.courseMarkers.put(item.getId(), this.mMap.addMarker(getMarkerForItem(item)));
+//                    }
+//                }
+//
+//                //If the marker is off screen
+//            else
+//                {
+//                    //If the course was previously on screen
+//                    if (courseMarkers.containsKey(item.getId())) {
+//                        //1. Remove the Marker from the GoogleMap
+//                        courseMarkers.get(item.getId()).remove();
+//
+//                        //2. Remove the reference to the Marker from the HashMap
+//                        courseMarkers.remove(item.getId());
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     private void buildLocationRequest() {
         locationRequest = new LocationRequest();
@@ -2215,78 +2084,9 @@ public class MapActivity extends AppCompatActivity implements
 
 
     }
-    /**
-     * get the needed location permissions
-     * that is fine location only (feeling like adding coarse location later idk XD)
-     */
-//    private void getLocationPermission() {
-//        Log.d(TAG, "getLocationPermission: ");
-//        /*
-//         * Request location permission, so that we can get the location of the
-//         * device. The result of the permission request is handled by a callback,
-//         * onRequestPermissionsResult.
-//         */
-//        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-//                ACCESS_FINE_LOCATION)
-//                == PackageManager.PERMISSION_GRANTED) {
-//        } else {
-//            ActivityCompat.requestPermissions(this,
-//                    new String[]{ACCESS_FINE_LOCATION},
-//                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-//        }
-//    }
-
-//    /**
-//     * show the activity to get the permissions
-//     *
-//     * @param requestCode
-//     * @param permissions
-//     * @param grantResults
-//     */
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode,
-//                                           @NonNull String permissions[],
-//                                           @NonNull int[] grantResults) {
-//        Log.d(TAG, "onRequestPermissionsResult: ");
-//        switch (requestCode) {
-//            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-//                // If request is cancelled, the result arrays are empty.
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                }
-//            }
-//        }
-//        updateLocationUI();
-//    }
 
     /**
-     * Performs the geofencing task that was pending until location permission was granted.
-     */
-//    @RequiresApi(api = Build.VERSION_CODES.M)
-//    private void performPendingGeofenceTask() {
-//        if (mPendingGeofenceTask == PendingGeofenceTask.ADD) {
-////            addGeofences();
-//        } else if (mPendingGeofenceTask == PendingGeofenceTask.REMOVE) {
-//            removeGeofences();
-//        }
-//    }
-
-    /**
-     * Removes geofences. This method should be called after the user has granted the location
-     * permission.
-     */
-    @SuppressWarnings("MissingPermission")
-//    private void removeGeofences() {
-//        if (!checkPermissions()) {
-//            showSnackbar(getString(R.string.insufficient_permissions));
-//            return;
-//        }
-//
-//        mGeofencingClient.removeGeofences(getGeofencePendingIntent()).addOnCompleteListener(this);
-//    }
-
-    /**
-     * Runs when the result of calling {@link #addGeofences()} and/or {@link #removeGeofences()}
+     * Runs when the result of calling {addGeofences()} and/or {removeGeofences()}
      * is available.
      *
      * @param task the resulting Task, containing either a result or error.
@@ -2328,64 +2128,6 @@ public class MapActivity extends AppCompatActivity implements
                 Constants.GEOFENCES_ADDED_KEY, false);
     }
 
-
-//    /**
-//     * Adds geofences. This method should be called after the user has granted the location
-//     * permission.
-//     */
-//    @SuppressWarnings("MissingPermission")
-//    private void addGeofences() {
-//        if (geofencesAdded = false) {
-//            if (!checkPermissions()) {
-//                showSnackbar(getString(R.string.insufficient_permissions));
-//                return;
-//            }
-//
-//            mGeofencingClient.addGeofences(getGeofencingRequest(), getGeofencePendingIntent())
-//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                            Toast.makeText(MapActivity.this, "added geofences successfully", Toast.LENGTH_SHORT).show();
-//                            geofencesAdded = true;
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Toast.makeText(MapActivity.this, "failed to add geofences: " + e.getMessage(), Toast.LENGTH_LONG).show();
-//                            geofencesAdded = false;
-//                        }
-//                    });
-//        }
-//    }
-
-//    /**
-//     * add the geofences to the map
-//     * called when the user clicks the add geofences btn
-//     * the mGeofenceList should already have been populated
-//     */
-//    @RequiresApi(api = Build.VERSION_CODES.M)
-//    public void addGeofences() {
-//        Log.d(TAG, "addGeofences: ");
-//        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            requestPermissions();
-//            return;
-//        }
-//        mGeofencingClient.addGeofences(getGeofencingRequest(), getGeofencePendingIntent())
-//                .addOnSuccessListener(this, new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.d(TAG, "onSuccess: geofenccess added!");
-//                    }
-//                })
-//                .addOnFailureListener(this, new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d(TAG, "onFailure: failed to add geofences! : " + e.getMessage());
-//                    }
-//                });
-//    }
-
     /**
      * Builds and returns a GeofencingRequest. Specifies the list of geofences to be monitored.
      * Also specifies how the geofence notifications are initially triggered.
@@ -2426,99 +2168,6 @@ public class MapActivity extends AppCompatActivity implements
         return mGeofencePendingIntent;
     }
 
-    /**
-     *
-     *
-     *
-     *
-     *
-     */
-
-    /**
-     * THIS PART IS TO RUN IN FUTURE ADMIN APP TO RESTORE VOTES TO 0
-     */
-
-
-    /**
-     * add list of stations to the firebase firestore db
-     */
-
-//        for (int i = 0; i < stationsNames.size(); i++) {
-//            Map<String, Object> city = new HashMap<>();
-//            city.put("name", stationsNames.get(i));
-//            city.put("current users", 0);
-//            city.put("has internet", true);
-//            city.put("line names", Arrays.asList("jaune"));
-//            city.put("number of lines", 0);
-//            city.put("safe votes", 0);
-//            city.put("unsafe votes", 0);
-//            city.put("location", stationName
-//
-//            db.collection("cities").document("lille").collection("lille stations").document(stationsNames.get(i))
-//                    .set(city)
-//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                            Log.d(TAG, "onSuccess: added successfully: ");
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Log.d(TAG, "onFailure: " + e.getMessage());
-//                        }
-//                    });
-//
-//        }
-    public void getCurrentCityFromStart() {
-        FusedLocationProviderClient fusedLocationClient;
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        HashMap<String, LatLng> cityList = new HashMap<>();
-                        cityList.put("lille", new LatLng(50.6292, 3.0573));
-                        cityList.put("lyon", new LatLng(45.7640, 4.8357));
-                        cityList.put("marseille", new LatLng(43.2965, 5.3698));
-                        cityList.put("paris", new LatLng(48.8566, 2.3522));
-                        cityList.put("rennes", new LatLng(48.1173, 1.6778));
-                        cityList.put("toulouse", new LatLng(43.6047, 1.4442));
-                        String closestCity = "";
-                        if (location != null) {
-                            // Logic to handle location object
-                            double latitude = location.getLatitude();
-                            double longitude = location.getLongitude();
-                            double minimumDistance = 100000000;
-                            for (String city : cityList.keySet()) {
-                                if (minimumDistance > pow(pow(latitude - cityList.get(city).latitude, 2) + pow(longitude - cityList.get(city).longitude, 2), 0.2)) {
-                                    minimumDistance = pow(pow(latitude - cityList.get(city).latitude, 2) + pow(longitude - cityList.get(city).longitude, 2), 0.2);
-                                    closestCity = city;
-//                                    Toast.makeText(MapActivity.this, "city: " + closestCity + " at a distance of: " + minimumDistance, Toast.LENGTH_SHORT).show();
-                                    currentCity = closestCity;
-                                }
-                            }
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                addGeoFencing();
-                            }
-                        }
-//                        Toast.makeText(MapActivity.this, "currentCity is: " + currentCity, Toast.LENGTH_SHORT).show();
-                        // since this function is called from onStart we will not zoom in to the current user's location because
-                        // each time the user changes activity and comes back it will change the zoom (for example when the user
-                        // goes to the feed and clicks the back button he will have to set the camera's position again
-                        if (location != null && selectedStation != null) {
-//                            moveCamera(new LatLng(location.getLatitude(), location.getLongitude()),
-//                                    DEFAULT_ZOOM);
-//                            mToolbar.setTitle(currentCity + ": " + selectedStation);
-                            mToolbar.setTitle(selectedStation);
-                        } else {
-                            Toast.makeText(MapActivity.this, "please logout then login again!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
     public void getCurrentCity() {
 //        Toast.makeText(MapActivity.this, "called getCurrentCity!", Toast.LENGTH_SHORT).show();
         FusedLocationProviderClient fusedLocationClient;
@@ -2550,7 +2199,10 @@ public class MapActivity extends AppCompatActivity implements
                                 }
                             }
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                addGeoFencing();
+                                /**
+                                 * TODO: IF THIS SHIT DOESN'T WORK RE-ENABLE IT
+                                 */
+//                                addGeoFencing();
                             }
                         }
 //                        Toast.makeText(MapActivity.this, "currentCity is: " + currentCity, Toast.LENGTH_SHORT).show();
@@ -2564,16 +2216,6 @@ public class MapActivity extends AppCompatActivity implements
                     }
                 });
     }
-
-    public void removeMarkersFromMap() {
-        Log.d(TAG, "removeMarkersFromMap: called!");
-        if (mMap != null) {
-            Log.d(TAG, "removeMarkersFromMap: mMap != null");
-            mMap.clear();
-        }
-
-    }
-
 
     public void requestPermissionsWithDexter() {
         Dexter.withActivity(this)
@@ -2630,4 +2272,16 @@ public class MapActivity extends AppCompatActivity implements
         rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
         return rewardedAd;
     }
+
+    String secToTime(int sec) {
+        int second = sec % 60;
+        int minute = sec / 60;
+        if (minute >= 60) {
+            int hour = minute / 60;
+            minute %= 60;
+            return hour + "h " + (minute < 10 ? "0" + minute : minute) + "min " + (second < 10 ? "0" + second : second) + "s";
+        }
+        return minute + "min " + (second < 10 ? "0" + second : second) + "s";
+    }
+
 }

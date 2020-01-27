@@ -32,4 +32,12 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
+    <style name="AppTheme.FeedTheme">
+
+        <item name="android:backgroundDimAmount">50</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowBackground">@drawable/feed_background</item>
+    </style>
+
 </resources>

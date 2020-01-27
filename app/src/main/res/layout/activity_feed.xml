@@ -10,6 +10,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feed_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="3dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

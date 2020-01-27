@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MarkerChooserPopup extends AppCompatActivity implements View.OnClickListener {
+    EditText messageEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +24,13 @@ public class MarkerChooserPopup extends AppCompatActivity implements View.OnClic
         /**
          * make it look like a fuckign popup
          */
-//        DisplayMetrics dm = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(dm);
-//
-//        int width = dm.widthPixels;
-//        int height = dm.heightPixels;
-//
-//        getWindow().setLayout((int) (width * 0.7), (int) (height * 0.7));
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout((int) (width * 0.7), (int) (height * 0.7));
 
 
         ImageView policeMarker = findViewById(R.id.imageViewPoliceMarker);
@@ -37,7 +38,7 @@ public class MarkerChooserPopup extends AppCompatActivity implements View.OnClic
         ImageView fireMarker = findViewById(R.id.imageViewFireMarker);
         ImageView protestsMarker = findViewById(R.id.imageViewProtestsMarker);
 
-        EditText messageEditText = findViewById(R.id.popup_message_edit_text);
+        messageEditText = findViewById(R.id.popup_message_edit_text);
 
         policeMarker.setOnClickListener(this);
         ticketsMarker.setOnClickListener(this);
@@ -54,19 +55,21 @@ public class MarkerChooserPopup extends AppCompatActivity implements View.OnClic
         switch (view.getId()) {
             case R.id.imageViewPoliceMarker:
 //                Toast.makeText(this, "selected Police!", Toast.LENGTH_SHORT).show();
-                returnIntent.putExtra("result", "policeMarker");
+                returnIntent.putExtra("type", "policeMarker");
+
                 break;
             case R.id.imageViewTicketsMarker:
-                returnIntent.putExtra("result", "ticketsMarker");
+                returnIntent.putExtra("type", "ticketsMarker");
                 break;
             case R.id.imageViewFireMarker:
-                returnIntent.putExtra("result", "fireMarker");
+                returnIntent.putExtra("type", "fireMarker");
                 break;
             case R.id.imageViewProtestsMarker:
-                returnIntent.putExtra("result", "protestMarker");
+                returnIntent.putExtra("type", "protestMarker");
                 break;
 
         }
+        returnIntent.putExtra("message", messageEditText.getText().toString());
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
 

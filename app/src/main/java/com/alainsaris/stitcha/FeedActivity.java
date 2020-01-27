@@ -5,11 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,8 +22,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.Query;
 import com.squareup.picasso.Picasso;
+
+import org.imperiumlabs.geofirestore.GeoFirestore;
+import org.imperiumlabs.geofirestore.GeoQuery;
 
 public class FeedActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -31,6 +39,9 @@ public class FeedActivity extends AppCompatActivity {
     private String station;
     private CollectionReference feedRef;
     private ImageView profilePicture;
+    private Location lastLocation;
+    private double latitude;
+    private double longitude;
 
     private boolean currentVote;
 
@@ -44,23 +55,22 @@ public class FeedActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            currentCity = extras.getString("CURRENT_CITY");
-//            userId = extras.getString("USER_ID");
-//            station = extras.getString("STATION");
+            latitude = extras.getDouble("LATITUDE");
+            longitude = extras.getDouble("LONGITUDE");
         }
 
-        //        feedRef = db.collection("/cities/" + currentCity + "/" + currentCity + " feed/" + userId + station);
-        feedRef = db.collection("/cities/" + currentCity + "/" + currentCity + " feed");
-
+        feedRef = db.collection("/markers/");
         setUpRecyclerView();
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-
-//        Toast.makeText(this, "" + currentCity, Toast.LENGTH_SHORT).show();
     }
 
     private void setUpRecyclerView() {
+        //this is what i want to use
+        GeoFirestore geoFirestore = new GeoFirestore(feedRef);
+        GeoQuery geoQuery = geoFirestore.queryAtLocation(
+                new GeoPoint(latitude, longitude),
+                15);// 15 kms
+
+        // this is the query i'm using currently
         Query query = feedRef
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .limit(50);
@@ -69,24 +79,19 @@ public class FeedActivity extends AppCompatActivity {
                 .setQuery(query, Feed.class)
                 .build();
 
-//        adapter = new FeedAdapter(options);
 
         adapter = new FirestoreRecyclerAdapter<Feed, FeedHolder>(options) {
             @Override
             public FeedHolder onCreateViewHolder(ViewGroup group, int i) {
-                // Create a new instance of the ViewHolder, in this case we are using a custom
-                // layout called R.layout.message for each item
+                // Create a new instance of the ViewHolder
                 View view = LayoutInflater.from(group.getContext())
                         .inflate(R.layout.feed_element, group, false);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                    view.setClipToOutline(true);
-                }
                 return new FeedHolder(view);
             }
 
             @Override
             public void onBindViewHolder(FeedHolder holder, int position, Feed model) {
-                // Bind the Chat object to the ChatHolder
+                // Bind the marker object to the ChatHolder
                 // ...
                 TextView stationName = holder.stationNameTextView;
                 TextView userName = holder.usernameTextView;
@@ -102,19 +107,8 @@ public class FeedActivity extends AppCompatActivity {
                 } else {
                     userName.setText(model.getUserName());
                 }
-//                TextView stationVote = holder.stationVoteTextView;
-//                stationVote.setText(model.getSafe());
-//                stationVote.setVisibility(View.GONE);
 
                 currentVote = model.getSafeBool();
-
-                //to change bg color
-                //old
-//                if (currentVote) {
-//                    holder.constraintLayout.setBackgroundColor(Color.parseColor("#4CA64C"));
-//                } else {
-//                    holder.constraintLayout.setBackgroundColor(Color.parseColor("#ff4c4c"));
-//                }
 
                 holder.constraintLayout.setClipToPadding(true);
 
@@ -139,5 +133,36 @@ public class FeedActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    /**
+     * slide the view from down to up and don't fill the whole screen
+     * (it will show the map in the background)
+     */
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout((int) (width * 1), (int) (height * 0.8));
+
+        View view = getWindow().getDecorView();
+        WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
+        lp.gravity = Gravity.LEFT | Gravity.BOTTOM;
+        getWindowManager().updateViewLayout(view, lp);
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finish();
+        // Use exiting animations specified by the parent activity if given
+        // Translate left if not specified.
+        overridePendingTransition(R.anim.down_in, R.anim.down_out);
     }
 }
