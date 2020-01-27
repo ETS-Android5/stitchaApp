@@ -1563,7 +1563,6 @@ public class MapActivity extends AppCompatActivity implements
         } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
-
     }
 
     /**
@@ -1679,7 +1678,6 @@ public class MapActivity extends AppCompatActivity implements
         }
         return true;
     }
-
 
     /**
      * options Menu functions end
