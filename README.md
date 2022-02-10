@@ -2,11 +2,16 @@
 ## 🖼️ Screenshots
 ### 🧑 Client
 --------------
-<img src="https://github.com/fayssalElAnsari/advanced_restaurant_menu_android_app/blob/master/pics/6.png" width="400"> 
+<img src="https://github.com/fayssalElAnsari/stitchaApp/edit/master/pics/client0.png"> 
+<img src="https://github.com/fayssalElAnsari/stitchaApp/edit/master/pics/client2.png">
+<img src="https://github.com/fayssalElAnsari/stitchaApp/edit/master/pics/client3.png">
+<img src="https://github.com/fayssalElAnsari/stitchaApp/edit/master/pics/client4.png"> 
 
 ### 🖥️ Server (DB)
 --------------
-<img src="https://github.com/fayssalElAnsari/advanced_restaurant_menu_android_app/blob/master/pics/Screenshot(48).png" width="400"> 
+<img src="https://github.com/fayssalElAnsari/stitchaApp/edit/master/pics/db1.png"> 
+<img src="https://github.com/fayssalElAnsari/stitchaApp/edit/master/pics/db2.png">
+<img src="https://github.com/fayssalElAnsari/stitchaApp/edit/master/pics/db3.png"> 
 
 ## ℹ️ Description
   This repository contains an application template for a voting system, the exmaple we have is that of voting app on whether a certain station is working or not, if you open the app for the first time you will be asked to give the required permission if declined two times the app will close, after giving the permissions you wil be automatically redirected to a register/login screen, we have two options enabled by default: google login and facebook login. After a successful login you wil be automatically redirected to the main screen of the app containing a map, the map will autozoom on the city you are in currently (the location between you and all the cities will be calculated and the nearest city is the city to be loaded). The pins of each metro station will autoload if you click on a pin a Toast message will show up telling you how many votes have been made in a specified duration, votes are deleted after 24h. You have two options to vote from `working` and `not working` if the user votes a Toast will show up and the info is automatically updated on the database and therefore for all connected users.   
