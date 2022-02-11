@@ -1,5 +1,12 @@
 # 📱 Stitcha: Android Metro Voting App 
 To download the app: [apk here!](https://github.com/fayssalElAnsari/stitchaApp/raw/master/apk/com.alainsaris.thisisit.apk)
+## Video Presentation
+
+
+https://user-images.githubusercontent.com/15277004/153659751-dfd68db7-4abc-45a5-86be-1669c86e13ef.mp4
+
+
+
 ## 🖼️ Screenshots
 ### 🧑 Client
 --------------
